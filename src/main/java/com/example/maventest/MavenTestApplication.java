@@ -19,7 +19,6 @@ public class MavenTestApplication {
 		}
 
 		//Verbinden
-
 			String url = "jdbc:postgresql://mouse.db.elephantsql.com/fsoypwho";
 			String user = "fsoypwho";
 			String password = "6WN1ECo6__Z6frAjXrPcnmkYiYIDpIqg";
