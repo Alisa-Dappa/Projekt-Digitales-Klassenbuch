@@ -19,18 +19,11 @@ public class MavenTestApplication {
 		}
 
 		//Verbinden
-		try {
-			String url = "jdbc:postgres://fsoypwho:6WN1ECo6__Z6frAjXrPcnmkYiYIDpIqg@mouse.db.elephantsql.com/fsoypwho";
+
+			String url = "jdbc:postgresql://mouse.db.elephantsql.com/fsoypwho";
 			String user = "fsoypwho";
 			String password = "6WN1ECo6__Z6frAjXrPcnmkYiYIDpIqg";
 			Connection connection;
 			connection = DriverManager.getConnection(url, user, password);
-
-
-
-		}catch (SQLException exception) {
-			System.out.println("SQLException: " + exception);
 		}
 	}
-
-}
