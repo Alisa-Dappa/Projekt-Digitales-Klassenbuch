@@ -1,7 +1,10 @@
 package com.example.maventest.Model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
     //Erstellung der Tabelle "Modul"
     @Entity
