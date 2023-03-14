@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var start = document.getElementById('event-start-date').value;
     var end = document.getElementById('event-end-date').value;
     var color = document.getElementById('event-color').value;
-    var recurring = document.getElementById('event-recurring').value;
     var description = document.getElementById('event-description').value;
 
     // Create event object
@@ -59,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
       end: end,
       color: color,
       extendedProps: {
-        recurring: recurring,
         description: description
       }
     };
@@ -168,31 +166,27 @@ body {
           <div id="event-form" class="modal">
             <div class="modal-content">
               <span class="close">&times;</span>
-              <h2>Create New Event</h2>
-              <form>
+              <span class="modal-title">Create New Event</span>
+              <form class="modal-content-flex">
+                <div class="modal-add-event">
                 <label for="event-title">Title:</label>
-                <input type="text" id="event-title" name="title" required>
-          
+                <input class="modal-input modal-title2" type="text" id="event-title" name="title" required>
+              </div>
                 <label for="event-start-date">Start Date:</label>
-                <input type="datetime-local" id="event-start-date" name="start_date" required>
-          
-                <label for="event-end-date">End Date:</label>
-                <input type="datetime-local" id="event-end-date" name="end_date" required>
-          
+                <input class="modal-input modal-start" type="datetime-local" id="event-start-date" name="start_date" required>
+          <div class="modal-add-event">
+                <label class="modal-end-date-text" for="event-end-date">End Date:</label>
+                <input class="modal-input modal-end" type="datetime-local" id="event-end-date" name="end_date" required>
+              </div>
+              <div class="modal-add-event">
                 <label for="event-color">Color:</label>
-                <input type="color" id="event-color" name="color">
-          
-                <label for="event-recurring">Recurring:</label>
-                <select id="event-recurring" name="recurring">
-                  <option value="none">None</option>
-                  <option value="daily">Daily</option>
-                  <option value="weekly">Weekly</option>
-                </select>
-          
+                <input class="modal-input modal-color" type="color" id="event-color" name="color">
+              </div>
+          <div class="modal-add-event">
                 <label for="event-description">Description:</label>
-                <textarea id="event-description" name="description"></textarea>
-          
-                <button type="submit">Create</button>
+                <textarea class="modal-input modal-textarea" id="event-description" name="description"></textarea>
+              </div>
+                <button class="modal-btn" type="submit">Create</button>
               </form>
             </div>
           </div>
