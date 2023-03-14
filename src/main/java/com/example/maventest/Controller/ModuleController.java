@@ -4,11 +4,12 @@ import com.example.maventest.Model.Module;
 import com.example.maventest.Model.ModuleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
     @Controller
     @RequestMapping("/module")
@@ -17,9 +18,15 @@ import java.util.Optional;
         @Autowired
         private ModuleRepository moduleRepository;
 
+        @GetMapping("/")
+        public List<Module> getAllModules() {
+            return moduleRepository.findAll();
+        }
+
         @GetMapping("/{id}")
-        public Optional<Module> getModuleById(@PathVariable Long id) {
-            return moduleRepository.findById(id);
+        public Module getModuleById(@PathVariable Long id) {
+            return moduleRepository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("Modul wurde nicht gefunden."));
         }
 
         @PostMapping("/")
@@ -28,8 +35,24 @@ import java.util.Optional;
             return moduleRepository.save(module);
         }
 
-        @GetMapping("/")
-        public List<Module> getAllModules() {
-            return moduleRepository.findAll();
+        @PutMapping("/{id}")
+        public Module updateModule(@PathVariable Long id, @Validated @RequestBody Module moduleDetails) {
+            Module module = moduleRepository.findById(id)
+                            .orElseThrow(() -> new RuntimeException("Modul wurde nicht gefunden."));
+
+            module.setName(moduleDetails.getName());
+
+            Module updatedModul = moduleRepository.save(module);
+            return updatedModul;
+        }
+
+        @DeleteMapping("/{id}")
+        public ResponseEntity<?> deleteModul(@PathVariable Long id) {
+            Module module = moduleRepository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("Modul wurde nicht gefunden."));
+
+            moduleRepository.delete(module);
+
+            return ResponseEntity.ok().build();
         }
     }
