@@ -2,3 +2,64 @@
     left: 20px;
     position: relative;
 }
+
+/*Modal*/
+.modal-content-flex{
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+   
+}
+.modal-add-event{
+    display: flex;
+    width: 100%;
+    
+    
+}
+.modal-btn{
+    background-color: #207EEF;
+    color: white;
+    border: 1px solid blue;
+    height: 20px;
+    width: 50px;
+}
+.close{
+    align-self: flex-end;
+    
+
+}
+.modal-title{
+    font-weight: bold;
+    font-size: large;
+
+}
+.modal-input{
+    width: 100%;
+   margin-right: 30px;
+}
+form{
+    width: 100%;
+}
+.modal-title2{
+    margin-left: 50px;
+}
+.modal-start{
+    width: 75.9%;
+    margin-left: 9px;
+}
+.modal-end{
+    margin-left: 10px;
+}
+.modal-color{
+    margin-left: 43px;
+}
+.modal-textarea{
+    margin-left: 6px;
+    height: 60px;
+    font-size: medium;
+}
+.modal-end-date-text{
+    width: 90px;
+}
