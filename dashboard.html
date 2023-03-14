@@ -16,14 +16,34 @@ document.addEventListener('DOMContentLoaded', function() {
       center: 'title',
       right: 'dayGridMonth,dayGridWeek'
     },
+    events: [
+        {
+          title: 'Mein Event',
+          start: '2023-03-16T10:00:00',
+          end: '2023-03-17T12:00:00',
+          color: '#378006',
+          description: 'Eine Beschreibung meines Events'
+        },
+      ],
     initialDate: new Date(),
     navLinks: true, // can click day/week names to navigate views
     editable: true,
     businessHours: true, // display business hours
     dayMaxEvents: true, // allow "more" link when too many events
     selectable: true,
-    weekNumbers: true
+    weekNumbers: true,
+    events:[]
+
   });
+      // fetch events from Spring Boot API
+      fetch('/events')
+        .then(response => response.json())
+        .then(events => {
+            // add fetched events to the calendar
+            calendar.addEventSource(events);
+            console.log(events);
+        });
+
 
   calendar.render();
 
@@ -125,11 +145,6 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
-
-
-
-
-
 
 
 </style>
