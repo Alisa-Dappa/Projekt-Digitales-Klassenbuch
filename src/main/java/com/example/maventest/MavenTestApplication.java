@@ -1,6 +1,6 @@
 package com.example.maventest;
 
-import com.example.maventest.Model.Modul;
+import com.example.maventest.Model.Module;
 import com.example.maventest.Model.Themen;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,7 +27,7 @@ public class MavenTestApplication {
 		Connection connection;
 		connection = DriverManager.getConnection(url, user, password);
 
-		Modul modul = new Modul();
+		Module modul = new Module();
 		Themen themen = new Themen();
 
 		//Erstellung der Tabellen in ElephantSQL

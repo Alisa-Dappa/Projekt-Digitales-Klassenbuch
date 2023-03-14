@@ -6,13 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-    //Erstellung der Tabelle "Modul"
+    //Erstellung der Tabelle "Module"
     @Entity
     @Getter
     @Setter
     @NoArgsConstructor
     @AllArgsConstructor
-    public class Modul {
+    public class Module {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
