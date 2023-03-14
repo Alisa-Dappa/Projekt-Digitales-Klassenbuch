@@ -36,5 +36,7 @@ public class MavenTestApplication {
 
 		st.execute("CREATE TABLE IF NOT EXISTS MODUL (ID SERIAL PRIMARY KEY, NAME VARCHAR(50))");
 		st.execute("CREATE TABLE IF NOT EXISTS THEMEN (ID SERIAL PRIMARY KEY, MODUL_ID INTEGER, BEZEICHNUNG VARCHAR(50))");
+
+		connection.close();
 		}
 	}
