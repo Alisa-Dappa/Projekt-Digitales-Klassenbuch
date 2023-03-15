@@ -38,23 +38,20 @@ import java.util.List;
 
         @PutMapping("/module/{modulid}")
         public Module updateModule(@PathVariable(value = "id") Long modulid, @Validated @RequestBody Module moduleDetails) {
-            Module module = moduleRepository.findById(modulid)
-                    .orElseThrow(() -> new RuntimeException("Modul wurde nicht gefunden."));
-
             Module modul = moduleRepository.findById(modulid)
                             .orElseThrow(() -> new RuntimeException("Modul wurde nicht gefunden."));
 
-            module.setName(moduleDetails.getName());
+            modul.setName(moduleDetails.getName());
 
-            return moduleRepository.save(module);
+            return moduleRepository.save(modul);
         }
 
         @DeleteMapping("/module/{id}")
         public ResponseEntity<?> deleteModul(@PathVariable(value = "id") Long modulid) {
-            Module module = moduleRepository.findById(modulid)
+            Module modul = moduleRepository.findById(modulid)
                     .orElseThrow(() -> new RuntimeException("Modul wurde nicht gefunden."));
 
-            moduleRepository.delete(module);
+            moduleRepository.delete(modul);
 
             return ResponseEntity.ok().build();
         }
@@ -74,7 +71,7 @@ import java.util.List;
         public Thema createThema(@PathVariable(value = "modulId") Long modulId,
                                  @Validated @RequestBody Thema thema) {
             return moduleRepository.findById(modulId).map(module -> {
-                thema.setModul_id(module);
+                thema.setModul(module);
                 return themaRepository.save(thema);
             }).orElseThrow(() -> new RuntimeException("Thema wurde nicht gefunden."));
         }

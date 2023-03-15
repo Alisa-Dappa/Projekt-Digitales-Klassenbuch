@@ -19,5 +19,5 @@ import lombok.Setter;
         private Long id;
         private String bezeichnung;
         @ManyToOne
-        private Module modul_id;
+        private Module modul;
     }

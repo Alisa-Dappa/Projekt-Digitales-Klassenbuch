@@ -22,7 +22,7 @@ import java.util.List;
         private String name;
 
         //Hier wird implementiert, dass ein Modul, mehrere Themen haben kann. => One to Many
-        @OneToMany(mappedBy = "module")
+        @OneToMany(mappedBy = "modul")
         private List<Thema> themen;
 
     }
