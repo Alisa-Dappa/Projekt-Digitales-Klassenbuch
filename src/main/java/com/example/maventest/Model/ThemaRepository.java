@@ -5,10 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+    @Repository
     public interface ThemaRepository extends JpaRepository<Thema, Long> {
-    void crateTable();
 
-    List<Thema> findByModulId(Long modulId);
+        List<Thema> findByModulId(Long modulId);
     }
 

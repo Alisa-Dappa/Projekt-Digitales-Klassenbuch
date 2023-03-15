@@ -12,16 +12,12 @@ import java.sql.*;
 		public static void main(String[] args) throws SQLException {
 			SpringApplication.run(MavenTestApplication.class, args);
 
-			//Datenbankverbindung herstellen
-			DatabaseConnection connection = new DatabaseConnection();
-			Connection dbConnection = connection.getConnection();
+			Connection connection = DatabaseConnection.getConnection();
 
-			//Erstellen der Tabellen mithilfe der Entity Klassen und Repository Interfaces
-			ModuleRepository moduleRepository = new ModuleRepositoryImpl(dbConnection);
-			ThemaRepository themaRepository = new ThemaRepositoryImpl(dbConnection);
+			//Erstellen der Tabellen aufrufen
+			DatabaseConnection.createTables();
 
-			moduleRepository.crateTable();
-			themaRepository.crateTable();
-
+			//Verbindung zur Datenbank schließen
+			DatabaseConnection.closeConnection();
 		}
     }

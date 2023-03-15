@@ -1,4 +1,4 @@
-package com.example.maventest.Model;
+/*package com.example.maventest.Model;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -12,12 +12,8 @@ import java.util.Optional;
 import java.util.function.Function;
 
 public class ModuleRepositoryImpl implements ModuleRepository{
+
     public ModuleRepositoryImpl(Connection dbConnection) {
-    }
-
-    @Override
-    public void crateTable() {
-
     }
 
     @Override
@@ -170,3 +166,4 @@ public class ModuleRepositoryImpl implements ModuleRepository{
         return null;
     }
 }
+*/

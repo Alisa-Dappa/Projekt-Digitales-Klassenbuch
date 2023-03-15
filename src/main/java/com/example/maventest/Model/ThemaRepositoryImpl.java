@@ -1,4 +1,4 @@
-package com.example.maventest.Model;
+/*package com.example.maventest.Model;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -13,12 +13,7 @@ import java.util.function.Function;
 
 public class ThemaRepositoryImpl implements ThemaRepository{
 
-    public ThemaRepositoryImpl(Connection dbconnection) {
-    }
-
-    @Override
-    public void crateTable() {
-
+    public ThemaRepositoryImpl(Connection dbConnection) {
     }
     @Override
     public List<Thema> findByModulId(Long modulId) {
@@ -175,3 +170,4 @@ public class ThemaRepositoryImpl implements ThemaRepository{
         return null;
     }
 }
+*/

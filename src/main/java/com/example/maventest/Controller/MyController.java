@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
     @RestController
     @RequestMapping("/api")
     public class MyController {
@@ -71,7 +70,7 @@ import java.util.List;
         public Thema createThema(@PathVariable(value = "modulId") Long modulId,
                                  @Validated @RequestBody Thema thema) {
             return moduleRepository.findById(modulId).map(module -> {
-                thema.setModul(module);
+                thema.setModule(module);
                 return themaRepository.save(thema);
             }).orElseThrow(() -> new RuntimeException("Thema wurde nicht gefunden."));
         }
