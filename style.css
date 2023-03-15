@@ -37,3 +37,12 @@ form{
 .modal-textarea{
     resize: none;
 }
+.main{
+    display: flex;
+    width: 100%;
+}
+
+@media (max-width: 1415px) {
+.main{
+    flex-direction: column;
+}}

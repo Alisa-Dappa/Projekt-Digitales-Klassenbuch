@@ -6,6 +6,7 @@
 <script src="main.js" defer></script>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="sidebar.css">
+<link rel="stylesheet" href="table.css">
 
 <script>
 
@@ -244,10 +245,10 @@ body {
         </div>  
         </nav>
         <div class="main">
-          
+          <div>
           <div id='calendar'></div>
           <button id="add-event-btn">+ Create Event</button>
-          
+        </div>
           <div id="event-form" class="modal">
             <div class="modal-content">
               <span class="close">&times;</span>
@@ -306,6 +307,30 @@ body {
               </form>
             </div>
           </div>
+          <!-- partial:index.partial.html -->
+            <div class="container">
+              <h2>Themenübersicht</h2>
+              <ul class="responsive-table">
+                <li class="table-header">
+                  <div class="col col-1">Id</div>
+                  <div class="col col-2">Name</div>
+                  <div class="col col-3">Beschreibung</div>
+                  <div class="col col-4">Datum</div>
+                </li>
+                <li class="table-row">
+                  <div class="col col-1" data-label="Id">1</div>
+                  <div class="col col-2" data-label="Name">Test</div>
+                  <div class="col col-3" data-label="Beschreibung">1</div>
+                  <div class="col col-4" data-label="Id">Test</div>
+                </li>
+              </ul>
+            </div>
+            <!-- partial -->
+          </div>
+          </div>
+
+
+
 
 
 
