@@ -17,6 +17,7 @@ import lombok.Setter;
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
-        private Long modul_id;
         private String bezeichnung;
+        @ManyToOne
+        private Module modul_id;
     }
