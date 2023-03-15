@@ -7,6 +7,10 @@ html, body {
     height: 100%;
   }
   
+body{
+    margin-top: 40px;
+}
+
 nav{
     height: 100%;
     color: #207EEF;
@@ -37,7 +41,7 @@ nav{
     padding-top: 20px;
     transition: 0.5s;
     width: 90%;
-    margin-left: 20px;
+    padding-left: 20px;
     border-bottom: 2px solid #207EEF;
     
 }

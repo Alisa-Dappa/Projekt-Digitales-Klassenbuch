@@ -3,6 +3,7 @@
 <head>
 <meta charset='utf-8' />
 <script src='../dist/index.global.js'></script>
+<script src="main.js" defer></script>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="sidebar.css">
 <script>
@@ -100,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <style>
 
 body {
-  margin: 40px 10px;
+  
   padding: 0;
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
   font-size: 14px;
@@ -181,23 +182,23 @@ body {
           <div id="event-form" class="modal">
             <div class="modal-content">
               <span class="close">&times;</span>
-              <span class="modal-title">Create New Event</span>
+              <h2 class="modal-title">Create New Event</h2>
               <form class="modal-content-flex">
-                <div class="modal-add-event">
+              <div class="modal-add-event">
                 <label for="event-title">Title:</label>
                 <input class="modal-input modal-title2" type="text" id="event-title" name="title" required>
-              </div>
+              
                 <label for="event-start-date">Start Date:</label>
-                <input class="modal-input modal-start" type="datetime-local" id="event-start-date" name="start_date" required>
-          <div class="modal-add-event">
+                <input class="modal-input modal-start" type="date" id="event-start-date" name="start_date" required>
+          
                 <label class="modal-end-date-text" for="event-end-date">End Date:</label>
-                <input class="modal-input modal-end" type="datetime-local" id="event-end-date" name="end_date" required>
-              </div>
-              <div class="modal-add-event">
+                <input class="modal-input modal-end" type="date" id="event-end-date" name="end_date" required>
+              
+             
                 <label for="event-color">Color:</label>
                 <input class="modal-input modal-color" type="color" id="event-color" name="color">
-              </div>
-          <div class="modal-add-event">
+              
+         
                 <label for="event-description">Description:</label>
                 <textarea class="modal-input modal-textarea" id="event-description" name="description"></textarea>
               </div>
