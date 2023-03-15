@@ -6,7 +6,9 @@
 <script src="main.js" defer></script>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="sidebar.css">
+
 <script>
+
 document.addEventListener('DOMContentLoaded', function() {
   var calendarEl = document.getElementById('calendar');
 
@@ -32,8 +34,22 @@ document.addEventListener('DOMContentLoaded', function() {
     businessHours: true, // display business hours
     dayMaxEvents: true, // allow "more" link when too many events
     selectable: true,
-    weekNumbers: true,
-    events:[]
+    weekNumbers: true,    
+    eventClick: function(info) {
+  
+      
+
+      document.getElementById('event-title2').value = info.event.title;
+  document.getElementById('event-start-date2').value = info.event.start;
+  document.getElementById('event-end-date2').value = info.event.end;
+  document.getElementById('event-color2').value = info.event.backgroundColor;
+  document.getElementById('event-description2').value = info.event.extendedProps.description;
+
+  document.getElementById('event-form-clickevent').style.display = 'block';
+  
+},
+
+
 
   });
       // fetch events from Spring Boot API
@@ -43,10 +59,54 @@ document.addEventListener('DOMContentLoaded', function() {
             // add fetched events to the calendar
             calendar.addEventSource(events);
             console.log(events);
+            
         });
 
 
   calendar.render();
+
+
+  document.querySelector('.modal-btn2').addEventListener('click', function() {
+    var id = document.getElementById('event-form-clickevent').value;
+  var title = document.getElementById('event-title2').value;
+  var start = document.getElementById('event-start-date2').value;
+  var end = document.getElementById('event-end-date2').value;
+  var color = document.getElementById('event-color2').value;
+  var description = document.getElementById('event-description2').value;
+
+  // Hier kannst du die Werte in einem Objekt speichern
+  var eventData = {
+    title: title,
+    start: start,
+    end: end,
+    backgroundColor: color,
+    description: description
+  };
+
+  // Hier kannst du die Werte ausgeben, um sicherzustellen, dass sie korrekt erfasst wurden
+  console.log(eventData);
+
+  // Hier kannst du den Event im Kalender aktualisieren
+  var eventObj = {
+    title: title,
+    start: start,
+    end: end,
+    backgroundColor: color,
+    description: description
+  };
+
+  // Verwende info.event.id, um das Event zu identifizieren
+  calendar.getEventById(id).setProp('title', title);
+  calendar.getEventById(id).setProp('start', start);
+  calendar.getEventById(id).setProp('end', end);
+  calendar.getEventById(id).setProp('backgroundColor', color);
+  calendar.getEventById(id).setExtendedProp('description', description);
+
+  // Hier kannst du das Modal schließen
+  document.getElementById('event-form-clickevent').style.display = 'none';
+});
+
+
 
   // Add event listener to "Create Event" button
   var addEventBtn = document.getElementById('add-event-btn');
@@ -54,11 +114,17 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('event-form').style.display = 'block';
   });
 
-  // Add event listener to "Close" button in the form
-  var closeBtn = document.getElementsByClassName('close')[0];
+    // Add event listener to "Close" button in the form
+    var closeBtn = document.getElementsByClassName('close')[0];
   closeBtn.addEventListener('click', function() {
     document.getElementById('event-form').style.display = 'none';
   });
+     // Add event listener to "Close" button in the form
+     var closeBtn = document.getElementsByClassName('close2')[0];
+  closeBtn.addEventListener('click', function() {
+    document.getElementById('event-form-clickevent').style.display = 'none';
+  });
+
 
   // Add event listener to form submission
   var form = document.querySelector('form');
@@ -94,9 +160,10 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-
-
 </script>
+
+
+
 
 <style>
 
@@ -133,7 +200,7 @@ body {
   width: 50%;
 }
 
-.close {
+.close, .close2 {
   color: #aaa;
   float: right;
   font-size: 28px;
@@ -141,7 +208,9 @@ body {
 }
 
 .close:hover,
-.close:focus {
+.close:focus,
+.close2:hover,
+.close2:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
@@ -206,11 +275,42 @@ body {
               </form>
             </div>
           </div>
+
+
+          <div id="event-form-clickevent" class="modal">
+            <div class="modal-content">
+              <span class="close2">&times;</span>
+              <h2 class="modal-title">Event ändern</h2>
+              <form class="modal-content-flex">
+              <div class="modal-add-event">
+                <label for="event-title">Title:</label>
+                <input class="modal-input modal-title2" type="text" id="event-title2" name="title" required>
+              
+                <label for="event-start-date">Start Date:</label>
+                <input class="modal-input modal-start" type="date" id="event-start-date2" name="start_date" required>
           
+                <label class="modal-end-date-text" for="event-end-date">End Date:</label>
+                <input class="modal-input modal-end" type="date" id="event-end-date2" name="end_date" required>
+              
+             
+                <label for="event-color">Color:</label>
+                <input class="modal-input modal-color" type="color" id="event-color2" name="color">
+              
+         
+                <label for="event-description">Description:</label>
+                <textarea class="modal-input modal-textarea" id="event-description2" name="description"></textarea>
+              </div>
+                <button class="modal-btn2" type="button">Ändern</button>
+                <button class="modal-btn-delete" type="button" onclick="deleteEvent()">Delete</button>
+
+              </form>
+            </div>
+          </div>
 
 
 
-  
+      
+          
 </div>
 </body>
 </html>
