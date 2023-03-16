@@ -1,0 +1,60 @@
+.main{
+    left: 20px;
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-right: 50px;
+
+}
+
+/*Modal*/
+
+form{
+    width: 100%;
+    
+}
+
+.modal-add-event{
+    display: grid;
+    grid-template-rows: 40px 30px 30px 50px 70px;
+    grid-template-columns: 80px 1fr;
+    row-gap: 10px;
+    margin-right: 40px;
+    margin-top: 20px;
+}
+.modal-content{
+    border-radius: 25px;
+}
+.modal-color{
+    width: 100%;
+    height: 100%;
+}
+
+.modal-input{
+    border: none;
+    border-bottom: 2px solid #207EEF;
+    font-size: 20px;
+}
+.modal-color{
+    border: none
+}
+.modal-textarea{
+    resize: none;
+}
+
+
+@media (max-width: 1415px) {
+.main{
+    flex-direction: column;
+}}
+.table-margin{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+   
+}
+.table{
+    margin-bottom: 20px;
+   
+}

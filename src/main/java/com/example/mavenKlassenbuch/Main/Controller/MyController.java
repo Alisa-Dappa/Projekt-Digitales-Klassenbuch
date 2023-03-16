@@ -26,10 +26,10 @@ import java.util.List;
             this.themaRepository = themaRepository;
         }
 
-        @GetMapping("/dashboard")
+        @GetMapping("/dashboard-home")
         public String dashboard(@RequestParam(name = "Klassenbuch", required = false) String name, Model model) {
             model.addAttribute("Klassenbuch", name);
-            return "dashboard";
+            return "dashboard-home";
         }
 
         @GetMapping("/")

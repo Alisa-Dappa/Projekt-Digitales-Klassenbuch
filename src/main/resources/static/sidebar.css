@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: realTimeRoundedRegular,Arial,Helvetica,sans-serif;
+}
+html, body {
+    height: 100%;
+  }
+  
+body{
+    margin-top: 40px;
+}
+
+nav{
+    height: 100%;
+    color: #207EEF;
+    display: flex;
+    flex-direction: column;
+    
+    width: 200px;
+
+    border-right: 2px solid blue;
+    position: fixed;
+    margin-right: 100px;
+    
+}
+.userinfo-navbar{
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.profilepicture-navbar{
+    width: 60px;
+    border-radius: 50%;
+    padding: 10px;
+    background-color: black;
+}
+.nav-items{
+    padding-bottom: 20px;
+    padding-top: 20px;
+    width: 90%;
+    padding-left: 20px;
+    border-bottom: 2px solid #207EEF;
+    
+    color: blue;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+    background-color: white;
+    background-image: repeating-linear-gradient(90deg, rgba(13, 13, 13,0.09) 0px, rgba(13, 13, 13,0.09) 36px,rgba(229, 229, 229,0.09) 36px, rgba(229, 229, 229,0.09) 72px,transparent 72px, transparent 108px,rgba(163, 163, 163,0.09) 108px, rgba(163, 163, 163,0.09) 144px,rgba(21, 21, 21,0.09) 144px, rgba(21, 21, 21,0.09) 180px),repeating-linear-gradient(90deg, rgba(0,0,0,0.08) 0px, rgba(0,0,0,0.08) 14px,transparent 14px, transparent 28px,rgba(0,0,0,0.08) 28px, rgba(0,0,0,0.08) 42px,transparent 42px, transparent 56px,rgba(0,0,0,0.08) 56px, rgba(0,0,0,0.08) 70px),repeating-linear-gradient(90deg, rgba(0,0,0,0.08) 0px, rgba(0,0,0,0.08) 23px,transparent 23px, transparent 46px,rgba(0,0,0,0.08) 46px, rgba(0,0,0,0.08) 69px,transparent 69px, transparent 92px,rgba(0,0,0,0.08) 92px, rgba(0,0,0,0.08) 115px),repeating-linear-gradient(90deg, rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 6px,transparent 6px, transparent 12px,rgba(0,0,0,0.04) 12px, rgba(0,0,0,0.04) 18px,transparent 18px, transparent 24px,rgba(0,0,0,0.04) 24px, rgba(0,0,0,0.04) 30px),linear-gradient(90deg, rgb(212, 109, 30),rgb(176, 117, 193));
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+.nav-items:hover, .nav-items:active{
+    background-size: 100% 100%;
+    color: white;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+  
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+    
+}
+.main-page{
+    display: flex;
+    flex-direction: row;
+}
+.navbar-icon{
+    margin-bottom: -2px;
+}
+
+/*Inhalt*/
+
+
+.main{
+    margin-left: 202px;
+    margin-top: 50px;
+}
+.active-site{
+    background-size: 100% 100%;
+    color: white;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+  
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+}
