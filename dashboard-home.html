@@ -186,6 +186,17 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
       }
     };
 
+    var xhr = new XMLHttpRequest();
+  xhr.open("POST", "/Module", true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onreadystatechange = function() {
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      console.log('Event saved successfully!');
+    }
+  };
+  xhr.send(JSON.stringify(eventData));
+
+
     // Add the event to the calendar
     calendar.addEvent(eventObj);
 
@@ -268,25 +279,25 @@ body {
         </div>
         <div class="nav-items active-site">
             <svg class="navbar-icon icon icon-tabler icon-tabler-home "xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg>
-            <a>Home</a>
+            <a style="text-decoration: none;">Home</a>
         </div>
         <div class="nav-items">
             <svg class="navbar-icon icon icon-tabler icon-tabler-color-swatch" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M19 3h-4a2 2 0 0 0 -2 2v12a4 4 0 0 0 8 0v-12a2 2 0 0 0 -2 -2"></path><path d="M13 7.35l-2 -2a2 2 0 0 0 -2.828 0l-2.828 2.828a2 2 0 0 0 0 2.828l9 9"></path><path d="M7.3 13h-2.3a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h12"></path><path d="M17 17l0 .01"></path></svg>
-            <a>Themenwahl</a>
+            <a style="text-decoration: none;">Themenwahl</a>
         </div>
         <div class="nav-items">
         <svg class="navbar-icon icon icon-tabler icon-tabler-question-mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path><path d="M12 19l0 .01"></path></svg>
-            <a>Anwesenheitsliste</a>
+            <a style="text-decoration: none;" href="dashboard-anwesenheitsliste.html">Anwesenheitsliste</a>
         </div>
         <div class="nav-items">
             <svg class="navbar-icon icon icon-tabler icon-tabler-question-mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path><path d="M12 19l0 .01"></path></svg>
-            <a>Klassentools</a>
+            <a style="text-decoration: none;">Klassentools</a>
         </div>  
         </nav>
         <div class="main">
           <div>
           <div id='calendar'></div>
-          <button id="add-event-btn">+ Create Event</button>
+          <button id="add-event-btn" class="btn-style">+ Create Event</button>
         </div>
           <div id="event-form" class="modal">
             <div class="modal-content">
@@ -311,7 +322,7 @@ body {
                 <label for="event-description">Description:</label>
                 <textarea class="modal-input modal-textarea" id="event-description" name="description"></textarea>
               </div>
-                <button class="modal-btn" type="submit">Create</button>
+                <button class="modal-btn btn-style" type="submit">Create</button>
               </form>
             </div>
           </div>
@@ -340,8 +351,8 @@ body {
                 <label for="event-description">Description:</label>
                 <textarea class="modal-input modal-textarea" id="event-description2" name="description"></textarea>
               </div>
-                <button class="modal-btn2" type="button">Ändern</button>
-                <button class="modal-btn-delete" type="button" onclick="deleteEvent()">Delete</button>
+                <button class="modal-btn2 btn-style" type="button">Ändern</button>
+                <button class="modal-btn-delete btn-style" type="button" onclick="deleteEvent()">Delete</button>
 
               </form>
             </div>
