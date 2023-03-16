@@ -25,8 +25,8 @@ import java.util.List;
         }
 
         @GetMapping("/module/{id}")
-        public Module getModuleById(@PathVariable(value = "id") Long modulid) {
-            return moduleRepository.findById(modulid)
+        public Module getModuleById(@PathVariable(value = "id") Long module_id) {
+            return moduleRepository.findById(module_id)
                     .orElseThrow(() -> new RuntimeException("Modul wurde nicht gefunden."));
         }
 
@@ -35,51 +35,51 @@ import java.util.List;
             return moduleRepository.save(module);
         }
 
-        @PutMapping("/module/{modulid}")
-        public Module updateModule(@PathVariable(value = "id") Long modulid, @Validated @RequestBody Module moduleDetails) {
-            Module modul = moduleRepository.findById(modulid)
+        @PutMapping("/module/{module_id}")
+        public Module updateModule(@PathVariable(value = "id") Long module_id, @Validated @RequestBody Module moduleDetails) {
+            Module module = moduleRepository.findById(module_id)
                             .orElseThrow(() -> new RuntimeException("Modul wurde nicht gefunden."));
 
-            modul.setName(moduleDetails.getName());
+            module.setName(moduleDetails.getName());
 
-            return moduleRepository.save(modul);
+            return moduleRepository.save(module);
         }
 
         @DeleteMapping("/module/{id}")
-        public ResponseEntity<?> deleteModul(@PathVariable(value = "id") Long modulid) {
-            Module modul = moduleRepository.findById(modulid)
+        public ResponseEntity<?> deleteModul(@PathVariable(value = "id") Long module_id) {
+            Module module = moduleRepository.findById(module_id)
                     .orElseThrow(() -> new RuntimeException("Modul wurde nicht gefunden."));
 
-            moduleRepository.delete(modul);
+            moduleRepository.delete(module);
 
             return ResponseEntity.ok().build();
         }
 
-        @GetMapping("/module/{modulId}/themen")
-        public List<Thema> getAllThemenByModulId(@PathVariable(value = "modulId") Long modulId) {
-            return themaRepository.findByModulId(modulId);
+        @GetMapping("/module/{module_Id}/themen")
+        public List<Thema> getAllThemenByModule_Id(@PathVariable(value = "module_id") Long module_id) {
+            return themaRepository.findByModule_Id(module_id);
         }
 
         @GetMapping("/themen/{id}")
-        public Thema getThemaById(@PathVariable(value = "id") Long themaId) {
-            return themaRepository.findById(themaId)
+        public Thema getThemaById(@PathVariable(value = "id") Long thema_id) {
+            return themaRepository.findById(thema_id)
                     .orElseThrow(() -> new RuntimeException("Thema wurde nicht gefunden."));
         }
 
-        @PostMapping("/module/{modulId}/themen")
-        public Thema createThema(@PathVariable(value = "modulId") Long modulId,
+        @PostMapping("/module/{module_id}/themen")
+        public Thema createThema(@PathVariable(value = "module_id") Long module_id,
                                  @Validated @RequestBody Thema thema) {
-            return moduleRepository.findById(modulId).map(module -> {
+            return moduleRepository.findById(module_id).map(module -> {
                 thema.setModule(module);
                 return themaRepository.save(thema);
             }).orElseThrow(() -> new RuntimeException("Thema wurde nicht gefunden."));
         }
 
         @PutMapping("/themen/{id}")
-        public Thema updateThema(@PathVariable(value = "id") Long themaId,
+        public Thema updateThema(@PathVariable(value = "id") Long thema_id,
                                  @Validated @RequestBody Thema themaDetails) {
 
-            Thema thema = themaRepository.findById(themaId)
+            Thema thema = themaRepository.findById(thema_id)
                     .orElseThrow(() -> new RuntimeException("Thema wurde nicht gefunden."));
 
             thema.setBezeichnung(themaDetails.getBezeichnung());
