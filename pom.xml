@@ -51,7 +51,7 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
