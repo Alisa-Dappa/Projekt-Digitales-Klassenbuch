@@ -1,6 +1,10 @@
 .main{
     left: 20px;
     position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
 }
 
 /*Modal*/
@@ -37,12 +41,18 @@ form{
 .modal-textarea{
     resize: none;
 }
-.main{
-    display: flex;
-    width: 100%;
-}
+
 
 @media (max-width: 1415px) {
 .main{
     flex-direction: column;
 }}
+.table-margin{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+   
+}
+.table{
+    margin-bottom: 20px;
+}
