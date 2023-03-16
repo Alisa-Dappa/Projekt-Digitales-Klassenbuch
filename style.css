@@ -4,6 +4,7 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
+    margin-right: 50px;
 
 }
 
@@ -55,4 +56,5 @@ form{
 }
 .table{
     margin-bottom: 20px;
+   
 }

@@ -81,3 +81,13 @@ nav{
     margin-left: 202px;
     margin-top: 50px;
 }
+.active-site{
+    background-size: 100% 100%;
+    color: white;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+  
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+}
