@@ -1,7 +1,5 @@
 package com.example.mavenKlassenbuch.Main.Model;
 
-import com.example.mavenKlassenbuch.Main.Model.Module;
-import com.example.mavenKlassenbuch.Main.Model.ModuleRepository;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

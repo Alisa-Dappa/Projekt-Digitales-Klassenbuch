@@ -1,8 +1,6 @@
 package com.example.mavenKlassenbuch.Main.Controller;
 
-import com.example.mavenKlassenbuch.Main.Model.ModuleRepositoryImpl;
-import com.example.mavenKlassenbuch.Main.Model.Thema;
-import com.example.mavenKlassenbuch.Main.Model.ThemaRepositoryImpl;
+import com.example.mavenKlassenbuch.Main.Model.*;
 import com.example.mavenKlassenbuch.Main.Model.Module;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
     @Controller
-    @RequestMapping("/api")
+    @RequestMapping
     public class MyController {
 
         @Autowired
-        private final ModuleRepositoryImpl moduleRepository;
+        private final ModuleRepository moduleRepository;
 
         @Autowired
-        private final ThemaRepositoryImpl themaRepository;
+        private final ThemaRepository themaRepository;
 
         public MyController(ModuleRepositoryImpl moduleRepository, ThemaRepositoryImpl themaRepository) {
             this.moduleRepository = moduleRepository;

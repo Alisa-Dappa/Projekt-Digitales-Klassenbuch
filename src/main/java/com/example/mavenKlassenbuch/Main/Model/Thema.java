@@ -1,6 +1,5 @@
 package com.example.mavenKlassenbuch.Main.Model;
 
-import com.example.mavenKlassenbuch.Main.Model.Module;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
