@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: realTimeRoundedRegular,Arial,Helvetica,sans-serif;
+}
+html, body {
+    height: 100%;
+  }
+  
+nav{
+    height: 100%;
+    color: #207EEF;
+    display: flex;
+    flex-direction: column;
+    
+    width: 200px;
+
+    border-right: 2px solid blue;
+    position: fixed;
+    margin-right: 100px;
+    
+}
+.userinfo-navbar{
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.profilepicture-navbar{
+    width: 60px;
+    border-radius: 50%;
+    padding: 10px;
+    background-color: black;
+}
+.nav-items{
+    padding-bottom: 20px;
+    padding-top: 20px;
+    transition: 0.5s;
+    width: 90%;
+    margin-left: 20px;
+    border-bottom: 2px solid #207EEF;
+    
+}
+.nav-items:hover, .nav-items:active{
+    background-color: #207EEF;
+    cursor: pointer;
+    font-weight: bold;
+  
+}
+.main-page{
+    display: flex;
+    flex-direction: row;
+}
+.navbar-icon{
+    margin-bottom: -2px;
+}
+
+/*Inhalt*/
+
+
+.main{
+    margin-left: 202px;
+    margin-top: 50px;
+}

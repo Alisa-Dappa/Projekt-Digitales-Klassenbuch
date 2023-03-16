@@ -4,6 +4,7 @@ import com.example.maventest.Model.*;
 import com.example.maventest.Model.Module;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,12 @@ import java.util.List;
     @RestController
     @RequestMapping("/api")
     public class MyController {
+
+        @GetMapping("/dashboard")
+        public String dashboard(@RequestParam(name = "Klassenbuch", required = false) String name, Model model) {
+            model.addAttribute("Klassenbuch", name);
+            return "dashboard";
+        }
 
         @Autowired
         private ModuleRepository moduleRepository;
