@@ -70,7 +70,7 @@ if (endDate) {
       $.ajax({
     url: '/api/Module/',
     type: 'PUT',
-    contentType: 'application/json',
+    contentType: 'application/json' + eventId,
     data: JSON.stringify(info.event),
     success: function(data) {
       // Ereignis erfolgreich aktualisiert
@@ -85,7 +85,7 @@ if (endDate) {
     }, 
     eventResize:function(info){
       $.ajax({
-    url: '/api/Module/',
+    url: '/api/Module/' + eventId,
     type: 'PUT',
     contentType: 'application/json',
     data: JSON.stringify(info.event),
@@ -169,7 +169,7 @@ if (endDate) {
   };
 
   $.ajax({
-    url: '/api/Module/',
+    url: '/api/Module/' + eventId,
     type: 'PUT',
     contentType: 'application/json',
     data: JSON.stringify(eventData),
@@ -201,6 +201,20 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
   var event = calendar.getEventById(eventIdcurrent); // Event-Objekt abrufen
   if (event) {
     event.remove(); // Event löschen
+    $.ajax({
+    url: "/api/module/" + eventId,
+    type: "DELETE",
+    success: function(data) {
+      // Event erfolgreich gelöscht
+      console.log(data);
+    },
+    error: function(xhr, status, error) {
+      // Fehler beim Löschen des Events
+      console.log(error);
+    }
+  });
+
+
   }
   // Modal schließen
   document.getElementById('event-form-clickevent').style.display = 'none';
