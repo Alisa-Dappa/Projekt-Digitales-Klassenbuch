@@ -58,3 +58,16 @@ form{
     margin-bottom: 20px;
    
 }
+.btn-style{
+    background-color: transparent;
+    margin-top: 10px;
+    border: 2px solid #207EEF;
+    width: 110px;
+    height: 40px;
+    transition: 0.5s;
+    border-radius: 10px;
+}
+.btn-style:hover{
+    background-color: #207EEF;
+    color: white;
+}

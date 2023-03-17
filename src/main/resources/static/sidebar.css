@@ -41,7 +41,6 @@ nav{
     padding-top: 20px;
     width: 90%;
     padding-left: 20px;
-    border-bottom: 2px solid #207EEF;
     
     color: blue;
     text-decoration: none;
@@ -55,7 +54,7 @@ nav{
     background-repeat: no-repeat;
     background-position: left center;
 }
-.nav-items:hover, .nav-items:active{
+.nav-items:hover, .nav-items:active, .nav-items:hover a{
     background-size: 100% 100%;
     color: white;
     border-top-right-radius: 0px;
@@ -64,6 +63,7 @@ nav{
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
     border-bottom-right-radius: 25px;
     border-top-right-radius: 25px;
+    
     
 }
 .main-page{
@@ -80,8 +80,9 @@ nav{
 .main{
     margin-left: 202px;
     margin-top: 50px;
+    
 }
-.active-site{
+.activesite, .activesite a{
     background-size: 100% 100%;
     color: white;
     border-top-right-radius: 0px;
@@ -90,4 +91,10 @@ nav{
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
     border-bottom-right-radius: 25px;
     border-top-right-radius: 25px;
+
 }
+.activesite a{
+    color: white;
+    text-decoration: none;
+}
+
