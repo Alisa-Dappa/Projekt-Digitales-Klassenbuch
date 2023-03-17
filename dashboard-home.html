@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
-      right: 'dayGridMonth,dayGridWeek'
+      right: 'dayGridMonth,dayGridWeek,timeGridDay'
     },
     events: [
         {
@@ -57,14 +57,49 @@ if (endDate) {
 }
 
 // Datum in das input Feld einsetzen
-document.getElementById('event-start-date2').value = startDate;
-document.getElementById('event-end-date2').value = endDate;
+  document.getElementById('event-start-date2').value = startDate;
+  document.getElementById('event-end-date2').value = endDate;
 
   document.getElementById('event-color2').value = info.event.backgroundColor;
   document.getElementById('event-description2').value = info.event.extendedProps.description;
 
   document.getElementById('event-form-clickevent').style.display = 'block';  
 },
+    eventDrop: function(info){
+      
+      $.ajax({
+    url: '/api/Module/',
+    type: 'PUT',
+    contentType: 'application/json',
+    data: JSON.stringify(info.event),
+    success: function(data) {
+      // Ereignis erfolgreich aktualisiert
+      console.log(data);
+    },
+    error: function(xhr, status, error) {
+      // Fehler beim Aktualisieren des Ereignisses
+      console.log(error);
+    }
+  });
+      
+    }, 
+    eventResize:function(info){
+      $.ajax({
+    url: '/api/Module/',
+    type: 'PUT',
+    contentType: 'application/json',
+    data: JSON.stringify(info.event),
+    success: function(data) {
+      // Ereignis erfolgreich aktualisiert
+      console.log(data);
+    },
+    error: function(xhr, status, error) {
+      // Fehler beim Aktualisieren des Ereignisses
+      console.log(error);
+    }
+  });
+    }
+
 
   
 
@@ -73,14 +108,30 @@ document.getElementById('event-end-date2').value = endDate;
 
   });
       // fetch events from Spring Boot API
-      fetch('/events')
-        .then(response => response.json())
-        .then(events => {
-            // add fetched events to the calendar
-            calendar.addEventSource(events);
-            console.log(events);
-            
+      $(document).ready(function() {
+  $.ajax({
+    url: '/api/Module', // URL zur Abfrage der Ereignisse
+    type: 'GET',
+    dataType: 'json',
+    success: function(response) {
+      // Ereignisse im Kalender anzeigen
+      var events = [];
+      $.each(response, function(index, event) {
+        events.push({
+          id: event.id,
+          title: event.title,
+          start: event.start.toISOString(),
+          end: event.end.toISOString(),
+          color: event.color
         });
+      });
+      $('#calendar').fullCalendar('addEventSource', events);
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log(textStatus, errorThrown);
+    }
+  });
+});
 
 
   calendar.render();
@@ -116,6 +167,22 @@ document.getElementById('event-end-date2').value = endDate;
     backgroundColor: color,
     description: description
   };
+
+  $.ajax({
+    url: '/api/Module/',
+    type: 'PUT',
+    contentType: 'application/json',
+    data: JSON.stringify(eventData),
+    success: function(data) {
+      // Ereignis erfolgreich aktualisiert
+      console.log(data);
+    },
+    error: function(xhr, status, error) {
+      // Fehler beim Aktualisieren des Ereignisses
+      console.log(error);
+    }
+  });
+
   var event = calendar.getEventById(eventidcurrent);
   event.setProp('title', title);
   event.setStart(start);
@@ -190,7 +257,7 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
 
     
   $.ajax({
-    url: "/api/Module",
+    url: "/api/module",
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify(eventObj),
