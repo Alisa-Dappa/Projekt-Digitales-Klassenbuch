@@ -29,5 +29,60 @@ import java.util.List;
         @OneToMany(mappedBy = "module", cascade = CascadeType.ALL, orphanRemoval = true)
         private List<Thema> themen;
 
+    public Long getId() {
+        return id;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getStartDatum() {
+        return startDatum;
+    }
+
+    public void setStartDatum(String startDatum) {
+        this.startDatum = startDatum;
+    }
+
+    public String getEndDatum() {
+        return endDatum;
+    }
+
+    public void setEndDatum(String endDatum) {
+        this.endDatum = endDatum;
+    }
+
+    public String getFarbe() {
+        return farbe;
+    }
+
+    public void setFarbe(String farbe) {
+        this.farbe = farbe;
+    }
+
+    public String getJsID() {
+        return jsID;
+    }
+
+    public void setJsID(String jsID) {
+        this.jsID = jsID;
+    }
+
+    public List<Thema> getThemen() {
+        return themen;
+    }
+
+    public void setThemen(List<Thema> themen) {
+        this.themen = themen;
+    }
+}
 
