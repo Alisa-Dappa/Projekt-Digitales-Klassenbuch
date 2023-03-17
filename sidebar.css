@@ -82,7 +82,7 @@ nav{
     margin-top: 50px;
     
 }
-.active-site, .active-site a{
+.activesite, .activesite a{
     background-size: 100% 100%;
     color: white;
     border-top-right-radius: 0px;
@@ -93,10 +93,8 @@ nav{
     border-top-right-radius: 25px;
 
 }
-
-a:visited{
-    color:blue
-}
-activesite-a{
+.activesite a{
     color: white;
+    text-decoration: none;
 }
+

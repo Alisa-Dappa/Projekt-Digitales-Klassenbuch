@@ -5,13 +5,126 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="table.css">
+    <link rel="stylesheet" href="anwesenheitsliste.css">
+    <script src='../dist/index.global.js'></script>
     <title>Document</title>
+
+
 </head>
 <body>
-</style>
+
 </head>
 <body>
+    <script>
+        
+        window.onload = function() {
+            const currentTime = new Date();
+  const currentHour = currentTime.getHours();
+  const currentMinute = currentTime.getMinutes();
+  
+          var addEventBtn = document.getElementById('anwesenheit');
+          addEventBtn.addEventListener('click', function() {
+          if (currentHour < 8 || (currentHour === 15 && currentMinute > 15)) {
+            alert("Es ist zu spät um die Anwwesenheit zu bestätigen");
+            } else {
+                
+            document.getElementById('event-form').style.display = 'block';
+            }
+          });
+        
+        var closeBtn = document.getElementsByClassName('close')[0];
+  closeBtn.addEventListener('click', function() {
+    document.getElementById('event-form').style.display = 'none';
+  });
+// get canvas element and context
+var canvas = document.getElementById("signature-field");
+var context = canvas.getContext("2d");
+
+// set styles for drawing
+context.lineWidth = 2;
+context.strokeStyle = "#000000";
+
+// set initial position of the mouse
+var lastX, lastY;
+canvas.addEventListener("mousedown", function (event) {
+  lastX = event.clientX - canvas.offsetLeft;
+  lastY = event.clientY - canvas.offsetTop;
+});
+
+// draw line on mousemove
+canvas.addEventListener("mousemove", function (event) {
+  if (lastX && lastY) {
+    var currentX = event.clientX - canvas.offsetLeft;
+    var currentY = event.clientY - canvas.offsetTop;
+    context.beginPath();
+    context.moveTo(lastX, lastY);
+    context.lineTo(currentX, currentY);
+    context.stroke();
+    lastX = currentX;
+    lastY = currentY;
+  }
+});
+
+// reset position on mouseup
+canvas.addEventListener("mouseup", function (event) {
+  lastX = null;
+  lastY = null;
+});
+
+// clear canvas on clear button click
+var clearButton = document.getElementById("clear-button");
+clearButton.addEventListener("click", function () {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+});
+
+
+};
+      </script>
+      <style>
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+.close, .close2 {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus,
+.close2:hover,
+.close2:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal-content{
+    border-radius: 25px;
+}
+      </style>
   <div class="main-page"> 
+    
     <nav>
         <div class="userinfo-navbar">
             <img class="profilepicture-navbar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png">
@@ -19,22 +132,112 @@
         </div>
         <div class="nav-items">
             <svg class="navbar-icon icon icon-tabler icon-tabler-home "xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg>
-            <a href="dashboard-home.html">Home</a>
+            <a style="text-decoration: none;" href="dashboard-home.html">Home</a>
         </div>
         <div class="nav-items">
             <svg class="navbar-icon icon icon-tabler icon-tabler-color-swatch" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M19 3h-4a2 2 0 0 0 -2 2v12a4 4 0 0 0 8 0v-12a2 2 0 0 0 -2 -2"></path><path d="M13 7.35l-2 -2a2 2 0 0 0 -2.828 0l-2.828 2.828a2 2 0 0 0 0 2.828l9 9"></path><path d="M7.3 13h-2.3a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h12"></path><path d="M17 17l0 .01"></path></svg>
-            <a>Themenwahl</a>
+            <a style="text-decoration: none;">Themenwahl</a>
         </div>
-        <div class="nav-items active-site">
+        <div class="nav-items activesite">
         <svg class="navbar-icon icon icon-tabler icon-tabler-question-mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path><path d="M12 19l0 .01"></path></svg>
-            <a style="color: white;"class="activesite-a" href="dashboard-anwesenheitsliste.html">Anwesenheitsliste</a>
+            <a style="text-decoration: none;" class="activesite" href="dashboard-anwesenheitsliste.html">Anwesenheitsliste</a>
         </div>
         <div class="nav-items">
             <svg class="navbar-icon icon icon-tabler icon-tabler-question-mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path><path d="M12 19l0 .01"></path></svg>
-            <a>Klassentools</a>
+            <a style="text-decoration: none;" >Klassentools</a>
         </div>  
         </nav>
+    <div class="main">
+        
+        <button id="anwesenheit" type="submit">Anwesenheit bestätigen</button>
 
+        <h2>Anwesenheitsliste</h2>
+      <div>
+        <div class="table-margin">
+            <div  class="table-position">            
+                
+            <table class="table">
+              <thead class="thead">
+              <tr class="tr">
+                <th class="th">Name</th>
+                <th class="th">Checklist</th>
+              </tr>
+              </thead>
+              <tbody class="tbody">
+              <tr>
+                <td class="td">James</td>
+                <td class="td"><input type="checkbox"></td>
+              </tr>
+              </tbody>
+            </table>     
+            <table class="table">
+                <thead class="thead">
+                <tr class="tr">
+                  <th class="th">Name</th>
+                  <th class="th">Checklist</th>
+                </tr>
+                </thead>
+                <tbody class="tbody">
+                <tr>
+                  <td class="td">Name</td>
+                  <td class="td"><input type="checkbox"></td>
+                </tr>
+                </tbody>
+              </table>   
+              <table class="table">
+                <thead class="thead">
+                <tr class="tr">
+                  <th class="th">Name</th>
+                  <th class="th">Checklist</th>
+                </tr>
+                </thead>
+                <tbody class="tbody">
+                <tr>
+                  <td class="td">Name</td>
+                  <td class="td"><input type="checkbox"></td>
+                </tr>
+                </tbody>
+              </table>     
+              <table class="table">
+                <thead class="thead">
+                <tr class="tr">
+                  <th class="th">Name</th>
+                  <th class="th">Checklist</th>
+                </tr>
+                </thead>
+                <tbody class="tbody">
+                <tr>
+                  <td class="td">Name</td>
+                  <td class="td"><input type="checkbox"></td>
+                </tr>
+                </tbody>
+              </table>     
+              </div> 
+            </div>
+
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+      <div id="event-form" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2 class="modal-title">Unterschrift</h2>
+          <div class="content-modal">
+          <form class="modal-content-flex">
+            <canvas id="signature-field" height="500px" width="800px" style="border: 2px solid black;"></canvas>
+           <p>Das Unterschrift Element, braucht eine bestimmte Display-Größe, damit es angezeigt werden kann.</p>
+        </div>
+          <div>
+            <button class="modal-btn btn-style" type="submit">Einreichen</button>
+            <button id="clear-button" type="button">Unterschrift neu machen</button>
+          </div>
+        </div>
+          </form>
+        </div>
+      </div>
 
 </body>
 </html>
