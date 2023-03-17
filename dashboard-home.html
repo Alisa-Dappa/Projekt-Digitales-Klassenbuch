@@ -66,11 +66,11 @@ if (endDate) {
   document.getElementById('event-form-clickevent').style.display = 'block';  
 },
     eventDrop: function(info){
-      
+      var eventidcurrent = eventid
       $.ajax({
     url: '/api/module/',
     type: 'PUT',
-    contentType: 'application/json' + eventId,
+    contentType: 'application/json' + eventidcurrent,
     data: JSON.stringify(info.event),
     success: function(data) {
       // Ereignis erfolgreich aktualisiert
@@ -84,8 +84,9 @@ if (endDate) {
       
     }, 
     eventResize:function(info){
+      var eventidcurrent = eventid
       $.ajax({
-    url: '/api/module/' + eventId,
+    url: '/api/module/' + eventidcurrent,
     type: 'PUT',
     contentType: 'application/json',
     data: JSON.stringify(info.event),
@@ -169,7 +170,7 @@ if (endDate) {
   };
 
   $.ajax({
-    url: '/api/module/' + eventId,
+    url: '/api/module/' + eventidcurrent,
     type: 'PUT',
     contentType: 'application/json',
     data: JSON.stringify(eventData),
@@ -202,7 +203,7 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
   if (event) {
     event.remove(); // Event löschen
     $.ajax({
-    url: "/api/module/" + eventId,
+    url: "/api/module/" + eventidcurrent,
     type: "DELETE",
     success: function(data) {
       // Event erfolgreich gelöscht
