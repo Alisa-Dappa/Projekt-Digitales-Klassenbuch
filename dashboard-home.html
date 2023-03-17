@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="sidebar.css">
 <link rel="stylesheet" href="table.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 <script>
 
@@ -186,15 +188,23 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
       }
     };
 
-    var xhr = new XMLHttpRequest();
-  xhr.open("POST", "/Module", true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.onreadystatechange = function() {
-    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-      console.log('Event saved successfully!');
+    
+  $.ajax({
+    url: "/api/Module",
+    type: "POST",
+    contentType: "application/json",
+    data: JSON.stringify(eventObj),
+    success: function(data) {
+      // Ereignis erfolgreich erstellt
+      console.log(data);
+    },
+    error: function(xhr, status, error) {
+      // Fehler beim Erstellen des Ereignisses
+      console.log(error);
     }
-  };
-  xhr.send(JSON.stringify(eventData));
+  });
+
+
 
 
     // Add the event to the calendar
