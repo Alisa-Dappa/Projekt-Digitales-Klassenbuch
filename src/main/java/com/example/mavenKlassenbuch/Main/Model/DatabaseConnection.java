@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class DatabaseConnection {
 
-    private static final String url = "jdbc:postgresql://mouse.db.elephantsql.com/fsoypwho";
+    private static final String url = "jdbc:postgresql://mouse.db.elephantsql.com:5432/fsoypwho";
     private static final String user = "fsoypwho";
     private static final String password = "6WN1ECo6__Z6frAjXrPcnmkYiYIDpIqg";
 

@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://mouse.db.elephantsql.com:5432/fsoypwho
+    username: fsoypwho
+    password: 6WN1ECo6__Z6frAjXrPcnmkYiYIDpIqg
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update

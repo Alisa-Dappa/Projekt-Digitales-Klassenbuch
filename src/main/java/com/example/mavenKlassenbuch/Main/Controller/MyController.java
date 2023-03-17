@@ -21,7 +21,7 @@ import java.util.List;
         @Autowired
         private final ThemaRepository themaRepository;
 
-        public MyController(ModuleRepositoryImpl moduleRepository, ThemaRepositoryImpl themaRepository) {
+        public MyController(ModuleRepository moduleRepository, ThemaRepository themaRepository) {  //Konstruktor hat die Interfaces als Parameter
             this.moduleRepository = moduleRepository;
             this.themaRepository = themaRepository;
         }
@@ -49,7 +49,7 @@ import java.util.List;
         }
 
         @PutMapping("/module/{module_id}")
-        public Module updateModule(@PathVariable(value = "id") Long module_id, @Validated @RequestBody Module moduleDetails) {
+        public Module updateModule(@PathVariable(value = "module_id") Long module_id, @Validated @RequestBody Module moduleDetails) {
             Module module = moduleRepository.findById(module_id)
                             .orElseThrow(() -> new RuntimeException("Modul wurde nicht gefunden."));
 
@@ -80,13 +80,13 @@ import java.util.List;
         }
 
         @PostMapping("/module/{module_id}/themen")
-        public Thema createThema(@PathVariable(value = "module_id") Long module_id,
-                                 @Validated @RequestBody Thema thema) {
-            return moduleRepository.findById(module_id).map(module -> {
-                thema.setModule(module);
-                return themaRepository.save(thema);
-            }).orElseThrow(() -> new RuntimeException("Thema wurde nicht gefunden."));
+        public Thema createThema(@PathVariable(value = "module_id") Long module_id, @Validated @RequestBody Thema thema) {
+            Module module = moduleRepository.findById(module_id)
+                    .orElseThrow(() -> new RuntimeException("Modul wurde nicht gefunden."));
+            thema.setModule(module);
+            return themaRepository.save(thema);
         }
+
 
         @PutMapping("/themen/{id}")
         public Thema updateThema(@PathVariable(value = "id") Long thema_id,
