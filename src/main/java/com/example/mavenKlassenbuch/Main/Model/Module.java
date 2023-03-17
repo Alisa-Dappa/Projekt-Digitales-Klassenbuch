@@ -20,6 +20,10 @@ import java.util.List;
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
         private String name;
+        private String startDatum;
+        private String endDatum;
+        private String farbe;
+        private String jsID;
 
         //Hier wird implementiert, dass ein Modul, mehrere Themen haben kann. => One to Many
         @OneToMany(mappedBy = "module", cascade = CascadeType.ALL, orphanRemoval = true)

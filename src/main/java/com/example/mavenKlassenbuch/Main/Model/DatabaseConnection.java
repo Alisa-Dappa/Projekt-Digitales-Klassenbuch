@@ -39,11 +39,15 @@ public class DatabaseConnection {
     }
 
     public static void createTables() {
-        try (Statement statement = connection.createStatement()) {
+        try (Statement statement = DatabaseConnection.connection.createStatement()) {
             // Erstellt Modul Tabelle
             String createModuleTable = "CREATE TABLE IF NOT EXISTS module ("
                     + "id SERIAL PRIMARY KEY,"
-                    + "name VARCHAR(255) NOT NULL)";
+                    + "name VARCHAR(255) NOT NULL,"
+                    + "startdatum VARCHAR(255),"
+                    + "enddatum VARCHAR(255),"
+                    + "farbe VARCHAR(255),"
+                    + "jsID VARCHAR(255))";
             statement.executeUpdate(createModuleTable);
 
             // Erstellt Thema Tabelle
