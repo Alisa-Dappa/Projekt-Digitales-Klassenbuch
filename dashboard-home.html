@@ -68,7 +68,7 @@ if (endDate) {
     eventDrop: function(info){
       
       $.ajax({
-    url: '/api/Module/',
+    url: '/api/module/',
     type: 'PUT',
     contentType: 'application/json' + eventId,
     data: JSON.stringify(info.event),
@@ -85,7 +85,7 @@ if (endDate) {
     }, 
     eventResize:function(info){
       $.ajax({
-    url: '/api/Module/' + eventId,
+    url: '/api/module/' + eventId,
     type: 'PUT',
     contentType: 'application/json',
     data: JSON.stringify(info.event),
@@ -110,7 +110,7 @@ if (endDate) {
       // fetch events from Spring Boot API
       $(document).ready(function() {
   $.ajax({
-    url: '/api/Module', // URL zur Abfrage der Ereignisse
+    url: '/api/module', // URL zur Abfrage der Ereignisse
     type: 'GET',
     dataType: 'json',
     success: function(response) {
@@ -169,7 +169,7 @@ if (endDate) {
   };
 
   $.ajax({
-    url: '/api/Module/' + eventId,
+    url: '/api/module/' + eventId,
     type: 'PUT',
     contentType: 'application/json',
     data: JSON.stringify(eventData),
