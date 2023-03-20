@@ -247,6 +247,7 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
   closeBtn.addEventListener('click', function() {
     document.getElementById('event-form-clickevent').style.display = 'none';
   });
+  
 
 
   // Add event listener to form submission
@@ -308,8 +309,18 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
   });
 });
 
-</script>
 
+function table_modal(element){
+  console.log(element.textContent);
+  document.getElementById('modal-table').style.display = 'block';  
+  document.getElementById("table-modal-title").textContent = element.textContent;
+  
+}
+function close_tablemodal(){
+  document.getElementById('modal-table').style.display = 'none';  
+}
+
+</script>
 
 
 
@@ -470,7 +481,37 @@ body {
               </form>
             </div>
           </div>
-          
+          <div id="modal-table" class="modal">
+            <div class="modal-content">
+              <span onclick="close_tablemodal()" class="close2">&times;</span>
+              <h2 class="modal-title" id="table-modal-title">Themen zu diesem Modul</h2>
+              <table class="table">
+                <thead class="thead">
+                <tr class="tr">
+                  <th class="th">Title</th>
+                  <th class="th">Farbe</th>
+                  <th class="th">Startdatum</th>
+                  <th class="th">Enddatum</th>
+                  <th class="th">Beschreibung</th>
+                  <th class="th">ID</th>
+                </tr>
+                </thead>
+                <tbody class="tbody">
+                <tr>
+                  <td class="td">Thema 1</td>
+                  <td class="td">Thema 2</td>
+                  <td class="td">Thema 3</td>
+                  <td class="td">Thema 4</td>
+                  <td class="td">Thema 5</td>
+                  <td class="td">Thema 6</td>
+                </tr>
+   
+               
+                </tbody>
+              </table>     
+              </form>
+            </div>
+          </div>
           
 
 
@@ -478,68 +519,19 @@ body {
             <h2>Themen</h2>
             <table class="table">
               <thead class="thead">
-              <tr class="tr">
-                <th class="th">First Name</th>
-                <th class="th">Last Name</th>
-                <th class="th">Job Title</th>
-                <th class="th">Favorite Color</th>
-                <th class="th">Wars or Trek?</th>
-                <th class="th">Name</th>
-                <th class="th">Date of Birth</th>
-                <th class="th">Dream Vacation City</th>
-                <th class="th">GPA</th>
-                <th class="th">Arbitrary Data</th>
-              </tr>
+                <tr class="tr">
+                  <th class="th">Modul</th>
+                </tr>
               </thead>
-              <tbody class="tbody">
-              <tr>
-                <td class="td">James</td>
-                <td class="td">Matman</td>
-                <td class="td">Chief Sandwich Eater</td>
-                <td class="td">Lettuce Green</td>
-                <td class="td">Trek</td>
-                <td class="td">Den</td>
-                <td class="td">January 13, 1979</td>
-                <td class="td">Gotham City</td>
-                <td class="td">3.1</td>
-                <td class="td">RBX-12</td>
-              </tr>
-             
+              <tbody class="tbody" id="tableBody">
+                <tr th:each="module : ${moduleList}">
+                  <td class="td" th:text="${module.name}" onclick="table_modal(this)"></td>
+                </tr>
               </tbody>
-            </table>     
+            </table>
+               
             
-            <h2>Module</h2>
-            <table class="table">
-              <thead class="thead">
-              <tr class="tr">
-                <th class="th">First Name</th>
-                <th class="th">Last Name</th>
-                <th class="th">Job Title</th>
-                <th class="th">Favorite Color</th>
-                <th class="th">Wars or Trek?</th>
-                <th class="th">Name</th>
-                <th class="th">Date of Birth</th>
-                <th class="th">Dream Vacation City</th>
-                <th class="th">GPA</th>
-                <th class="th">Arbitrary Data</th>
-              </tr>
-              </thead>
-              <tbody class="tbody">
-              <tr>
-                <td class="td">James</td>
-                <td class="td">Matman</td>
-                <td class="td">Chief Sandwich Eater</td>
-                <td class="td">Lettuce Green</td>
-                <td class="td">Trek</td>
-                <td class="td">Dn</td>
-                <td class="td">January 13, 1979</td>
-                <td class="td">Gotham City</td>
-                <td class="td">3.1</td>
-                <td class="td">RBX-12</td>
-              </tr>
-             
-              </tbody>
-            </table>      
+ 
           </div>
 
 
