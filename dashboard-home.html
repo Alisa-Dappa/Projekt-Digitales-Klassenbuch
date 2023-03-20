@@ -124,8 +124,8 @@ if (endDate) {
         events.push({
           id: event.id,
           title: event.title,
-          start: event.start.toISOString(),
-          end: event.end.toISOString(),
+          start: event.start,
+          end: event.end,
           color: event.color
         });
       });
@@ -149,7 +149,7 @@ if (endDate) {
   var color = document.getElementById('event-color2').value;
   var description = document.getElementById('event-description2').value;
   var eventidcurrent = eventid
-  var dropdown = document.getElementById('dropdown').value;
+  var dropdown = document.getElementById('dropdown2').value;
   // Hier kannst du die Werte in einem Objekt speichern
   var eventData = {
     title: title,
@@ -408,7 +408,8 @@ body {
         <div class="main">
           <div>
           <div id='calendar'></div>
-          <button id="add-event-btn" class="btn-style">+ Theme erstellen</button>
+          <button id="add-event-btn" class="btn-style">+ Thema erstellen</button>
+          <button class="btn-style">+ Modul erstellen</button>
         </div>
           <div id="event-form" class="modal">
             <div class="modal-content">
@@ -435,10 +436,10 @@ body {
 
                 <label for="event-description">Modul:</label>
                 <select name="idk" id="dropdown">
-                  <option value="option1">Option1</option>
-                  <option value="option2">Option2</option>
-                  <option value="option3">Option3</option>
+                  <option value="">Choose an option</option>
+                  <option th:each="module : ${moduleList}" th:value="${module.name}" th:text="${module.name}"></option>
                 </select>
+                
               </div>
                 <button class="modal-btn btn-style" type="submit">Create</button>
               </form>
@@ -469,10 +470,9 @@ body {
                 <label for="event-description">Description:</label>
                 <textarea class="modal-input modal-textarea" id="event-description2" name="description"></textarea>
                 <label for="event-description">Modul:</label>
-                <select name="idk" id="dropdown">
-                  <option value="option1">Option1</option>
-                  <option value="option2">Option2</option>
-                  <option value="option3">Option3</option>
+                <select name="idk" id="dropdown2">
+                  <option value="">Choose an option</option>
+                  <option th:each="module : ${moduleList}" th:value="${module.name}" th:text="${module.name}"></option>
                 </select>
               </div>
                 <button class="modal-btn2 btn-style" type="button">Ändern</button>
@@ -516,7 +516,7 @@ body {
 
 
           <div class="table-margin">
-            <h2>Themen</h2>
+            <h2>Module</h2>
             <table class="table">
               <thead class="thead">
                 <tr class="tr">
@@ -530,13 +530,9 @@ body {
               </tbody>
             </table>
                
-            
- 
+           
           </div>
-
-
           
-
 
           </div>
 
