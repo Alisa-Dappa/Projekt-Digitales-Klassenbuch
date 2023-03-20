@@ -28,9 +28,10 @@ import java.util.List;
         }
 
         @GetMapping("/dashboard-home")
-        public String dashboard(@RequestParam(name = "Klassenbuch", required = false) String name, Model model) {
-            model.addAttribute("Klassenbuch", name);
-            return "dashboard-home";
+        public String getModule(Model model) {
+            List<Module> moduleList = moduleRepository.findAll();
+            model.addAttribute("moduleList", moduleList);
+            return "dashboard-home.html";
         }
 
         @GetMapping("/dashboard-anwesenheitsliste")

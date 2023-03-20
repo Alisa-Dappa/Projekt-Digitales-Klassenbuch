@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset='utf-8' />
 <script src='../dist/index.global.js'></script>
@@ -124,8 +124,8 @@ if (endDate) {
         events.push({
           id: event.id,
           title: event.title,
-          start: event.start.toISOString(),
-          end: event.end.toISOString(),
+          start: event.start,
+          end: event.end,
           color: event.color
         });
       });
