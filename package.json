@@ -1,5 +1,0 @@
-{
-  "dependencies": {
-    "@azure/msal-browser": "^2.15.0"
-  }
-}
