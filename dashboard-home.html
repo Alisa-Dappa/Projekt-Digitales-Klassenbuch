@@ -149,13 +149,15 @@ if (endDate) {
   var color = document.getElementById('event-color2').value;
   var description = document.getElementById('event-description2').value;
   var eventidcurrent = eventid
+  var dropdown = document.getElementById('dropdown').value;
   // Hier kannst du die Werte in einem Objekt speichern
   var eventData = {
     title: title,
     start: start,
     end: end,
     backgroundColor: color,
-    description: description
+    description: description,
+    dropdown: dropdown
   };
 
   // Hier kannst du die Werte ausgeben, um sicherzustellen, dass sie korrekt erfasst wurden
@@ -169,7 +171,8 @@ if (endDate) {
     start: start,
     end: end,
     backgroundColor: color,
-    description: description
+    description: description,
+    dropdown: dropdown
   };
 
   $.ajax({
@@ -259,6 +262,7 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
     var color = document.getElementById('event-color').value;
     var description = document.getElementById('event-description').value;
     var id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    var dropdown = document.getElementById('dropdown').value;
 
 
     // Create event object
@@ -270,7 +274,8 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
       color: color,
       extendedProps: {
         description: description
-      }
+      },
+      dropdown: dropdown
     };
 
     
@@ -291,7 +296,7 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
 
 
 
-
+    
     // Add the event to the calendar
     calendar.addEvent(eventObj);
 
@@ -392,12 +397,12 @@ body {
         <div class="main">
           <div>
           <div id='calendar'></div>
-          <button id="add-event-btn" class="btn-style">+ Create Event</button>
+          <button id="add-event-btn" class="btn-style">+ Theme erstellen</button>
         </div>
           <div id="event-form" class="modal">
             <div class="modal-content">
               <span class="close">&times;</span>
-              <h2 class="modal-title">Create New Event</h2>
+              <h2 class="modal-title">Neues Thema</h2>
               <form class="modal-content-flex">
               <div class="modal-add-event">
                 <label for="event-title">Title:</label>
@@ -413,9 +418,16 @@ body {
                 <label for="event-color">Color:</label>
                 <input class="modal-input modal-color" type="color" id="event-color" name="color">
               
-         
+                
                 <label for="event-description">Description:</label>
                 <textarea class="modal-input modal-textarea" id="event-description" name="description"></textarea>
+
+                <label for="event-description">Modul:</label>
+                <select name="idk" id="dropdown">
+                  <option value="option1">Option1</option>
+                  <option value="option2">Option2</option>
+                  <option value="option3">Option3</option>
+                </select>
               </div>
                 <button class="modal-btn btn-style" type="submit">Create</button>
               </form>
@@ -426,7 +438,7 @@ body {
           <div id="event-form-clickevent" class="modal">
             <div class="modal-content">
               <span class="close2">&times;</span>
-              <h2 class="modal-title">Event ändern</h2>
+              <h2 class="modal-title">Thema ändern</h2>
               <form class="modal-content-flex">
               <div class="modal-add-event">
                 <label for="event-title">Title:</label>
@@ -445,6 +457,12 @@ body {
          
                 <label for="event-description">Description:</label>
                 <textarea class="modal-input modal-textarea" id="event-description2" name="description"></textarea>
+                <label for="event-description">Modul:</label>
+                <select name="idk" id="dropdown">
+                  <option value="option1">Option1</option>
+                  <option value="option2">Option2</option>
+                  <option value="option3">Option3</option>
+                </select>
               </div>
                 <button class="modal-btn2 btn-style" type="button">Ändern</button>
                 <button class="modal-btn-delete btn-style" type="button" onclick="deleteEvent()">Delete</button>
