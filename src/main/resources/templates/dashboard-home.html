@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset='utf-8' />
-<script src='../dist/index.global.js'></script>
-<script src="main.js" defer></script>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="sidebar.css">
-<link rel="stylesheet" href="table.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!--
-  Seite für den Stundenplan erstellen mit iframe
+  <meta charset='utf-8' />
+  <script src='../dist/index.global.js'></script>
+  <script src="main.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="sidebar.css">
+  <link rel="stylesheet" href="table.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!--
+    Seite für den Stundenplan erstellen mit iframe
 
--->
+  -->
 
-<script>
+  <script>
 
 document.addEventListener('DOMContentLoaded', function() {
   var eventid;
@@ -42,12 +42,12 @@ document.addEventListener('DOMContentLoaded', function() {
     businessHours: true, // display business hours
     dayMaxEvents: true, // allow "more" link when too many events
     selectable: true,
-    weekNumbers: true,    
+    weekNumbers: true,
     eventClick: function(info) {
   eventid = info.event.id;
   console.log(eventid);
   document.getElementById('event-title2').value = info.event.title;
-  
+
   // Setze das Anfangsdatum im ISO-Format
 // Datum in das gewünschte Format umwandeln
 var startDate = info.event.start;
@@ -66,7 +66,7 @@ if (endDate) {
   document.getElementById('event-color2').value = info.event.backgroundColor;
   document.getElementById('event-description2').value = info.event.extendedProps.description;
 
-  document.getElementById('event-form-clickevent').style.display = 'block';  
+  document.getElementById('event-form-clickevent').style.display = 'block';
 },
     eventDrop: function(info){
       var eventidcurrent = eventid
@@ -84,8 +84,8 @@ if (endDate) {
       console.log(error);
     }
   });
-      
-    }, 
+
+    },
     eventResize:function(info){
       var eventidcurrent = eventid
       $.ajax({
@@ -105,7 +105,7 @@ if (endDate) {
     }
 
 
-  
+
 
 
 
@@ -149,7 +149,7 @@ if (endDate) {
   var color = document.getElementById('event-color2').value;
   var description = document.getElementById('event-description2').value;
   var eventidcurrent = eventid
-  var dropdown = document.getElementById('dropdown').value;
+  var dropdown = document.getElementById('dropdown2').value;
   // Hier kannst du die Werte in einem Objekt speichern
   var eventData = {
     title: title,
@@ -163,7 +163,7 @@ if (endDate) {
   // Hier kannst du die Werte ausgeben, um sicherzustellen, dass sie korrekt erfasst wurden
   console.log(eventData);
   console.log(eventid)
-  
+
 
   // Hier kannst du den Event im Kalender aktualisieren
   var eventObj = {
@@ -247,15 +247,15 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
   closeBtn.addEventListener('click', function() {
     document.getElementById('event-form-clickevent').style.display = 'none';
   });
-  
+
 
 
   // Add event listener to form submission
   var form = document.querySelector('form');
-  
+
   form.addEventListener('submit', function(event) {
     event.preventDefault();
-    
+
     // Get form values
     var title = document.getElementById('event-title').value;
     var start = new Date(document.getElementById('event-start-date').value).toISOString();
@@ -279,7 +279,7 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
       dropdown: dropdown
     };
 
-    
+
   $.ajax({
     url: "/api/module",
     type: "POST",
@@ -297,7 +297,7 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
 
 
 
-    
+
     // Add the event to the calendar
     calendar.addEvent(eventObj);
 
@@ -312,22 +312,22 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
 
 function table_modal(element){
   console.log(element.textContent);
-  document.getElementById('modal-table').style.display = 'block';  
+  document.getElementById('modal-table').style.display = 'block';
   document.getElementById("table-modal-title").textContent = element.textContent;
-  
+
 }
 function close_tablemodal(){
-  document.getElementById('modal-table').style.display = 'none';  
+  document.getElementById('modal-table').style.display = 'none';
 }
 
 </script>
 
 
 
-<style>
+  <style>
 
 body {
-  
+
   padding: 0;
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
   font-size: 14px;
@@ -382,167 +382,163 @@ body {
 </style>
 </head>
 <body>
-  <div class="main-page"> 
-    <nav>
-      <div class="userinfo-navbar">
-          <img class="profilepicture-navbar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png">
-          <p>Name of the user</p>
-      </div>
-      <div class="nav-items activesite">
-          <svg class="navbar-icon icon icon-tabler icon-tabler-home "xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg>
-          <a style="text-decoration: none;" class="activesite" href="/dashboard-home">Home</a>
-      </div>
-      <div class="nav-items">
-          <svg class="navbar-icon icon icon-tabler icon-tabler-color-swatch" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M19 3h-4a2 2 0 0 0 -2 2v12a4 4 0 0 0 8 0v-12a2 2 0 0 0 -2 -2"></path><path d="M13 7.35l-2 -2a2 2 0 0 0 -2.828 0l-2.828 2.828a2 2 0 0 0 0 2.828l9 9"></path><path d="M7.3 13h-2.3a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h12"></path><path d="M17 17l0 .01"></path></svg>
-          <a style="text-decoration: none;">Themenwahl</a>
-      </div>
-      <div class="nav-items">
+<div class="main-page">
+  <nav>
+    <div class="userinfo-navbar">
+      <img class="profilepicture-navbar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png">
+      <p>Name of the user</p>
+    </div>
+    <div class="nav-items activesite">
+      <svg class="navbar-icon icon icon-tabler icon-tabler-home "xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg>
+      <a style="text-decoration: none;" class="activesite" href="/dashboard-home">Home</a>
+    </div>
+    <div class="nav-items">
+      <svg class="navbar-icon icon icon-tabler icon-tabler-color-swatch" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M19 3h-4a2 2 0 0 0 -2 2v12a4 4 0 0 0 8 0v-12a2 2 0 0 0 -2 -2"></path><path d="M13 7.35l-2 -2a2 2 0 0 0 -2.828 0l-2.828 2.828a2 2 0 0 0 0 2.828l9 9"></path><path d="M7.3 13h-2.3a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h12"></path><path d="M17 17l0 .01"></path></svg>
+      <a style="text-decoration: none;">Themenwahl</a>
+    </div>
+    <div class="nav-items">
       <svg class="navbar-icon icon icon-tabler icon-tabler-question-mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path><path d="M12 19l0 .01"></path></svg>
-          <a style="text-decoration: none;"  href="/dashboard-anwesenheitsliste">Anwesenheitsliste</a>
+      <a style="text-decoration: none;"  href="/dashboard-anwesenheitsliste">Anwesenheitsliste</a>
+    </div>
+    <div class="nav-items">
+      <svg class="navbar-icon icon icon-tabler icon-tabler-question-mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path><path d="M12 19l0 .01"></path></svg>
+      <a style="text-decoration: none;" >Klassentools</a>
+    </div>
+  </nav>
+  <div class="main">
+    <div>
+      <div id='calendar'></div>
+      <button id="add-event-btn" class="btn-style">+ Thema erstellen</button>
+      <button class="btn-style">+ Modul erstellen</button>
+    </div>
+    <div id="event-form" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Neues Thema</h2>
+        <form class="modal-content-flex">
+          <div class="modal-add-event">
+            <label for="event-title">Title:</label>
+            <input class="modal-input modal-title2" type="text" id="event-title" name="title" required>
+
+            <label for="event-start-date">Start Date:</label>
+            <input class="modal-input modal-start" type="date" id="event-start-date" name="start_date" required>
+
+            <label class="modal-end-date-text" for="event-end-date">End Date:</label>
+            <input class="modal-input modal-end" type="date" id="event-end-date" name="end_date" required>
+
+
+            <label for="event-color">Color:</label>
+            <input class="modal-input modal-color" type="color" id="event-color" name="color">
+
+
+            <label for="event-description">Description:</label>
+            <textarea class="modal-input modal-textarea" id="event-description" name="description"></textarea>
+
+            <label for="event-description">Modul:</label>
+            <select name="idk" id="dropdown">
+              <option value="">Choose an option</option>
+              <option th:each="Module : ${moduleList}" th:value="${module.name}" th:text="${module.name}"></option>
+            </select>
+
+          </div>
+          <button class="modal-btn btn-style" type="submit">Create</button>
+        </form>
       </div>
-      <div class="nav-items">
-          <svg class="navbar-icon icon icon-tabler icon-tabler-question-mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path><path d="M12 19l0 .01"></path></svg>
-          <a style="text-decoration: none;" >Klassentools</a>
-      </div>  
-      </nav>
-        <div class="main">
-          <div>
-          <div id='calendar'></div>
-          <button id="add-event-btn" class="btn-style">+ Theme erstellen</button>
-        </div>
-          <div id="event-form" class="modal">
-            <div class="modal-content">
-              <span class="close">&times;</span>
-              <h2 class="modal-title">Neues Thema</h2>
-              <form class="modal-content-flex">
-              <div class="modal-add-event">
-                <label for="event-title">Title:</label>
-                <input class="modal-input modal-title2" type="text" id="event-title" name="title" required>
-              
-                <label for="event-start-date">Start Date:</label>
-                <input class="modal-input modal-start" type="date" id="event-start-date" name="start_date" required>
-          
-                <label class="modal-end-date-text" for="event-end-date">End Date:</label>
-                <input class="modal-input modal-end" type="date" id="event-end-date" name="end_date" required>
-              
-             
-                <label for="event-color">Color:</label>
-                <input class="modal-input modal-color" type="color" id="event-color" name="color">
-              
-                
-                <label for="event-description">Description:</label>
-                <textarea class="modal-input modal-textarea" id="event-description" name="description"></textarea>
+    </div>
 
-                <label for="event-description">Modul:</label>
-                <select name="idk" id="dropdown">
-                  <option value="option1">Option1</option>
-                  <option value="option2">Option2</option>
-                  <option value="option3">Option3</option>
-                </select>
-              </div>
-                <button class="modal-btn btn-style" type="submit">Create</button>
-              </form>
-            </div>
+
+    <div id="event-form-clickevent" class="modal">
+      <div class="modal-content">
+        <span class="close2">&times;</span>
+        <h2 class="modal-title">Thema ändern</h2>
+        <form class="modal-content-flex">
+          <div class="modal-add-event">
+            <label for="event-title">Title:</label>
+            <input class="modal-input modal-title2" type="text" id="event-title2" name="title" required>
+
+            <label for="event-start-date">Start Date:</label>
+            <input class="modal-input modal-start" type="date" id="event-start-date2" name="start_date" required>
+
+            <label class="modal-end-date-text" for="event-end-date">End Date:</label>
+            <input class="modal-input modal-end" type="date" id="event-end-date2" name="end_date" required>
+
+
+            <label for="event-color">Color:</label>
+            <input class="modal-input modal-color" type="color" id="event-color2" name="color">
+
+
+            <label for="event-description">Description:</label>
+            <textarea class="modal-input modal-textarea" id="event-description2" name="description"></textarea>
+            <label for="event-description">Modul:</label>
+            <select name="idk" id="dropdown2">
+              <option value="">Choose an option</option>
+              <option th:each="module : ${moduleList}" th:value="${module.name}" th:text="${module.name}"></option>
+            </select>
           </div>
+          <button class="modal-btn2 btn-style" type="button">Ändern</button>
+          <button class="modal-btn-delete btn-style" type="button" onclick="deleteEvent()">Delete</button>
+
+        </form>
+      </div>
+    </div>
+    <div id="modal-table" class="modal">
+      <div class="modal-content">
+        <span onclick="close_tablemodal()" class="close2">&times;</span>
+        <h2 class="modal-title" id="table-modal-title">Themen zu diesem Modul</h2>
+        <table class="table">
+          <thead class="thead">
+          <tr class="tr">
+            <th class="th">Title</th>
+            <th class="th">Farbe</th>
+            <th class="th">Startdatum</th>
+            <th class="th">Enddatum</th>
+            <th class="th">Beschreibung</th>
+            <th class="th">ID</th>
+          </tr>
+          </thead>
+          <tbody class="tbody">
+          <tr>
+            <td class="td">Thema 1</td>
+            <td class="td">Thema 2</td>
+            <td class="td">Thema 3</td>
+            <td class="td">Thema 4</td>
+            <td class="td">Thema 5</td>
+            <td class="td">Thema 6</td>
+          </tr>
 
 
-          <div id="event-form-clickevent" class="modal">
-            <div class="modal-content">
-              <span class="close2">&times;</span>
-              <h2 class="modal-title">Thema ändern</h2>
-              <form class="modal-content-flex">
-              <div class="modal-add-event">
-                <label for="event-title">Title:</label>
-                <input class="modal-input modal-title2" type="text" id="event-title2" name="title" required>
-              
-                <label for="event-start-date">Start Date:</label>
-                <input class="modal-input modal-start" type="date" id="event-start-date2" name="start_date" required>
-          
-                <label class="modal-end-date-text" for="event-end-date">End Date:</label>
-                <input class="modal-input modal-end" type="date" id="event-end-date2" name="end_date" required>
-              
-             
-                <label for="event-color">Color:</label>
-                <input class="modal-input modal-color" type="color" id="event-color2" name="color">
-              
-         
-                <label for="event-description">Description:</label>
-                <textarea class="modal-input modal-textarea" id="event-description2" name="description"></textarea>
-                <label for="event-description">Modul:</label>
-                <select name="idk" id="dropdown">
-                  <option value="option1">Option1</option>
-                  <option value="option2">Option2</option>
-                  <option value="option3">Option3</option>
-                </select>
-              </div>
-                <button class="modal-btn2 btn-style" type="button">Ändern</button>
-                <button class="modal-btn-delete btn-style" type="button" onclick="deleteEvent()">Delete</button>
-
-              </form>
-            </div>
-          </div>
-          <div id="modal-table" class="modal">
-            <div class="modal-content">
-              <span onclick="close_tablemodal()" class="close2">&times;</span>
-              <h2 class="modal-title" id="table-modal-title">Themen zu diesem Modul</h2>
-              <table class="table">
-                <thead class="thead">
-                <tr class="tr">
-                  <th class="th">Title</th>
-                  <th class="th">Farbe</th>
-                  <th class="th">Startdatum</th>
-                  <th class="th">Enddatum</th>
-                  <th class="th">Beschreibung</th>
-                  <th class="th">ID</th>
-                </tr>
-                </thead>
-                <tbody class="tbody">
-                <tr>
-                  <td class="td">Thema 1</td>
-                  <td class="td">Thema 2</td>
-                  <td class="td">Thema 3</td>
-                  <td class="td">Thema 4</td>
-                  <td class="td">Thema 5</td>
-                  <td class="td">Thema 6</td>
-                </tr>
-   
-               
-                </tbody>
-              </table>     
-              </form>
-            </div>
-          </div>
-          
+          </tbody>
+        </table>
+        </form>
+      </div>
+    </div>
 
 
-          <div class="table-margin">
-            <h2>Themen</h2>
-            <table class="table">
-              <thead class="thead">
-                <tr class="tr">
-                  <th class="th">Module</th>
-                </tr>
-              </thead>
-              <tbody class="tbody" id="tableBody">
-                <tr th:each="module : ${moduleList}">
-                  <td class="td" th:text="${module.name}" onclick="table_modal(this)"></td>
-                </tr>
-              </tbody>
-            </table>
-               
-            
- 
-          </div>
+
+    <div class="table-margin">
+      <h2>Module</h2>
+      <table class="table">
+        <thead class="thead">
+        <tr class="tr">
+          <th class="th">Modul</th>
+        </tr>
+        </thead>
+        <tbody class="tbody" id="tableBody">
+        <tr th:each="module : ${moduleList}">
+          <td class="td" th:text="${module.name}" onclick="table_modal(this)"></td>
+        </tr>
+        </tbody>
+      </table>
 
 
-          
+    </div>
 
 
-          </div>
+  </div>
 
 
-          
-          </div>
+
+</div>
 
 
 </div>
