@@ -2,6 +2,7 @@ package com.example.mavenKlassenbuch.Main.Controller;
 
 import com.example.mavenKlassenbuch.Main.Model.*;
 import com.example.mavenKlassenbuch.Main.Model.Module;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -46,7 +47,7 @@ import java.util.List;
         @GetMapping("/module/{id}")
         public Module getModuleById(@PathVariable(value = "id") Long module_id) {
             return moduleRepository.findById(module_id)
-                    .orElseThrow(() -> new RuntimeException("Modul wurde nicht gefunden."));
+                    .orElseThrow(() -> new EntityNotFoundException("Modul wurde nicht gefunden."));
         }
 
         @PostMapping("/module")
@@ -57,7 +58,7 @@ import java.util.List;
         @PutMapping("/module/{module_id}")
         public Module updateModule(@PathVariable(value = "module_id") Long module_id, @Validated @RequestBody Module moduleDetails) {
             Module module = moduleRepository.findById(module_id)
-                            .orElseThrow(() -> new RuntimeException("Modul wurde nicht gefunden."));
+                            .orElseThrow(() -> new EntityNotFoundException("Modul wurde nicht gefunden."));
 
             module.setName(moduleDetails.getName());
 
@@ -67,7 +68,7 @@ import java.util.List;
         @DeleteMapping("/module/{id}")
         public ResponseEntity<?> deleteModul(@PathVariable(value = "id") Long module_id) {
             Module module = moduleRepository.findById(module_id)
-                    .orElseThrow(() -> new RuntimeException("Modul wurde nicht gefunden."));
+                    .orElseThrow(() -> new EntityNotFoundException("Modul wurde nicht gefunden."));
 
             moduleRepository.delete(module);
 
@@ -82,13 +83,13 @@ import java.util.List;
         @GetMapping("/themen/{id}")
         public Thema getThemaById(@PathVariable(value = "id") Long thema_id) {
             return themaRepository.findById(thema_id)
-                    .orElseThrow(() -> new RuntimeException("Thema wurde nicht gefunden."));
+                    .orElseThrow(() -> new EntityNotFoundException("Thema wurde nicht gefunden."));
         }
 
-        @PostMapping("/module/{module_id}/themen")
-        public Thema createThema(@PathVariable(value = "module_id") Long module_id, @Validated @RequestBody Thema thema) {
+        @PostMapping("/module/{module_Id}/themen")
+        public Thema createThema(@PathVariable(value = "module_Id") Long module_id, @Validated @RequestBody Thema thema) {
             Module module = moduleRepository.findById(module_id)
-                    .orElseThrow(() -> new RuntimeException("Modul wurde nicht gefunden."));
+                    .orElseThrow(() -> new EntityNotFoundException("Modul wurde nicht gefunden."));
             thema.setModule(module);
             return themaRepository.save(thema);
         }
@@ -99,7 +100,7 @@ import java.util.List;
                                  @Validated @RequestBody Thema themaDetails) {
 
             Thema thema = themaRepository.findById(thema_id)
-                    .orElseThrow(() -> new RuntimeException("Thema wurde nicht gefunden."));
+                    .orElseThrow(() -> new EntityNotFoundException("Thema wurde nicht gefunden."));
 
             thema.setBezeichnung(themaDetails.getBezeichnung());
 

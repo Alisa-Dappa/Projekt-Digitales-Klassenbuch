@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset='utf-8' />
-  <script src='../dist/index.global.js'></script>
-  <script src="main.js" defer></script>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="sidebar.css">
-  <link rel="stylesheet" href="table.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<meta charset='utf-8' />
+<script src='../dist/index.global.js'></script>
+<script src="main.js" defer></script>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="sidebar.css">
+<link rel="stylesheet" href="table.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--
+  Seite für den Stundenplan erstellen mit iframe
 
+-->
 
-  <script>
+<script>
 
 document.addEventListener('DOMContentLoaded', function() {
   var eventid;
@@ -81,8 +84,8 @@ if (endDate) {
       console.log(error);
     }
   });
-
-    },
+      
+    }, 
     eventResize:function(info){
       var eventidcurrent = eventid
       $.ajax({
@@ -102,7 +105,7 @@ if (endDate) {
     }
 
 
-
+  
 
 
 
@@ -146,19 +149,21 @@ if (endDate) {
   var color = document.getElementById('event-color2').value;
   var description = document.getElementById('event-description2').value;
   var eventidcurrent = eventid
+  var dropdown = document.getElementById('dropdown').value;
   // Hier kannst du die Werte in einem Objekt speichern
   var eventData = {
     title: title,
     start: start,
     end: end,
     backgroundColor: color,
-    description: description
+    description: description,
+    dropdown: dropdown
   };
 
   // Hier kannst du die Werte ausgeben, um sicherzustellen, dass sie korrekt erfasst wurden
   console.log(eventData);
   console.log(eventid)
-
+  
 
   // Hier kannst du den Event im Kalender aktualisieren
   var eventObj = {
@@ -166,7 +171,8 @@ if (endDate) {
     start: start,
     end: end,
     backgroundColor: color,
-    description: description
+    description: description,
+    dropdown: dropdown
   };
 
   $.ajax({
@@ -241,14 +247,15 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
   closeBtn.addEventListener('click', function() {
     document.getElementById('event-form-clickevent').style.display = 'none';
   });
+  
 
 
   // Add event listener to form submission
   var form = document.querySelector('form');
-
+  
   form.addEventListener('submit', function(event) {
     event.preventDefault();
-
+    
     // Get form values
     var title = document.getElementById('event-title').value;
     var start = new Date(document.getElementById('event-start-date').value).toISOString();
@@ -256,6 +263,7 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
     var color = document.getElementById('event-color').value;
     var description = document.getElementById('event-description').value;
     var id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    var dropdown = document.getElementById('dropdown').value;
 
 
     // Create event object
@@ -265,9 +273,13 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
       start: start,
       end: end,
       color: color,
+      extendedProps: {
+        description: description
+      },
+      dropdown: dropdown
     };
 
-
+    
   $.ajax({
     url: "/api/module",
     type: "POST",
@@ -285,7 +297,7 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
 
 
 
-
+    
     // Add the event to the calendar
     calendar.addEvent(eventObj);
 
@@ -297,15 +309,25 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
   });
 });
 
+
+function table_modal(element){
+  console.log(element.textContent);
+  document.getElementById('modal-table').style.display = 'block';  
+  document.getElementById("table-modal-title").textContent = element.textContent;
+  
+}
+function close_tablemodal(){
+  document.getElementById('modal-table').style.display = 'none';  
+}
+
 </script>
 
 
 
-
-  <style>
+<style>
 
 body {
-
+  
   padding: 0;
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
   font-size: 14px;
@@ -360,176 +382,167 @@ body {
 </style>
 </head>
 <body>
-<div class="main-page">
-  <nav>
-    <div class="userinfo-navbar">
-      <img class="profilepicture-navbar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png">
-      <p>Name of the user</p>
-    </div>
-    <div class="nav-items activesite">
-      <svg class="navbar-icon icon icon-tabler icon-tabler-home "xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg>
-      <a style="text-decoration: none;" class="activesite" href="dashboard-home.html">Home</a>
-    </div>
-    <div class="nav-items">
-      <svg class="navbar-icon icon icon-tabler icon-tabler-color-swatch" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M19 3h-4a2 2 0 0 0 -2 2v12a4 4 0 0 0 8 0v-12a2 2 0 0 0 -2 -2"></path><path d="M13 7.35l-2 -2a2 2 0 0 0 -2.828 0l-2.828 2.828a2 2 0 0 0 0 2.828l9 9"></path><path d="M7.3 13h-2.3a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h12"></path><path d="M17 17l0 .01"></path></svg>
-      <a style="text-decoration: none;">Themenwahl</a>
-    </div>
-    <div class="nav-items">
-      <svg class="navbar-icon icon icon-tabler icon-tabler-question-mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path><path d="M12 19l0 .01"></path></svg>
-      <a style="text-decoration: none;"  href="/dashboard-anwesenheitsliste">Anwesenheitsliste</a>
-    </div>
-    <div class="nav-items">
-      <svg class="navbar-icon icon icon-tabler icon-tabler-question-mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path><path d="M12 19l0 .01"></path></svg>
-      <a style="text-decoration: none;" >Klassentools</a>
-    </div>
-  </nav>
-  <div class="main">
-    <div>
-      <div id='calendar'></div>
-      <button id="add-event-btn" class="btn-style">+ Create Event</button>
-    </div>
-    <div id="event-form" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2 class="modal-title">Create New Event</h2>
-        <form class="modal-content-flex">
-          <div class="modal-add-event">
-            <label for="event-title">Title:</label>
-            <input class="modal-input modal-title2" type="text" id="event-title" name="title" required>
-
-            <label for="event-start-date">Start Date:</label>
-            <input class="modal-input modal-start" type="date" id="event-start-date" name="start_date" required>
-
-            <label class="modal-end-date-text" for="event-end-date">End Date:</label>
-            <input class="modal-input modal-end" type="date" id="event-end-date" name="end_date" required>
-
-
-            <label for="event-color">Color:</label>
-            <input class="modal-input modal-color" type="color" id="event-color" name="color">
-
-
-            <label for="event-description">Description:</label>
-            <textarea class="modal-input modal-textarea" id="event-description" name="description"></textarea>
-          </div>
-          <button class="modal-btn btn-style" type="submit">Create</button>
-        </form>
+  <div class="main-page"> 
+    <nav>
+      <div class="userinfo-navbar">
+          <img class="profilepicture-navbar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png">
+          <p>Name of the user</p>
       </div>
-    </div>
-
-
-    <div id="event-form-clickevent" class="modal">
-      <div class="modal-content">
-        <span class="close2">&times;</span>
-        <h2 class="modal-title">Event ändern</h2>
-        <form class="modal-content-flex">
-          <div class="modal-add-event">
-            <label for="event-title">Title:</label>
-            <input class="modal-input modal-title2" type="text" id="event-title2" name="title" required>
-
-            <label for="event-start-date">Start Date:</label>
-            <input class="modal-input modal-start" type="date" id="event-start-date2" name="start_date" required>
-
-            <label class="modal-end-date-text" for="event-end-date">End Date:</label>
-            <input class="modal-input modal-end" type="date" id="event-end-date2" name="end_date" required>
-
-
-            <label for="event-color">Color:</label>
-            <input class="modal-input modal-color" type="color" id="event-color2" name="color">
-
-
-            <label for="event-description">Description:</label>
-            <textarea class="modal-input modal-textarea" id="event-description2" name="description"></textarea>
-          </div>
-          <button class="modal-btn2 btn-style" type="button">Ändern</button>
-          <button class="modal-btn-delete btn-style" type="button" onclick="deleteEvent()">Delete</button>
-
-        </form>
+      <div class="nav-items activesite">
+          <svg class="navbar-icon icon icon-tabler icon-tabler-home "xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg>
+          <a style="text-decoration: none;" class="activesite" href="/dashboard-home">Home</a>
       </div>
-    </div>
+      <div class="nav-items">
+          <svg class="navbar-icon icon icon-tabler icon-tabler-color-swatch" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M19 3h-4a2 2 0 0 0 -2 2v12a4 4 0 0 0 8 0v-12a2 2 0 0 0 -2 -2"></path><path d="M13 7.35l-2 -2a2 2 0 0 0 -2.828 0l-2.828 2.828a2 2 0 0 0 0 2.828l9 9"></path><path d="M7.3 13h-2.3a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h12"></path><path d="M17 17l0 .01"></path></svg>
+          <a style="text-decoration: none;">Themenwahl</a>
+      </div>
+      <div class="nav-items">
+      <svg class="navbar-icon icon icon-tabler icon-tabler-question-mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path><path d="M12 19l0 .01"></path></svg>
+          <a style="text-decoration: none;"  href="/dashboard-anwesenheitsliste">Anwesenheitsliste</a>
+      </div>
+      <div class="nav-items">
+          <svg class="navbar-icon icon icon-tabler icon-tabler-question-mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path><path d="M12 19l0 .01"></path></svg>
+          <a style="text-decoration: none;" >Klassentools</a>
+      </div>  
+      </nav>
+        <div class="main">
+          <div>
+          <div id='calendar'></div>
+          <button id="add-event-btn" class="btn-style">+ Theme erstellen</button>
+        </div>
+          <div id="event-form" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <h2 class="modal-title">Neues Thema</h2>
+              <form class="modal-content-flex">
+              <div class="modal-add-event">
+                <label for="event-title">Title:</label>
+                <input class="modal-input modal-title2" type="text" id="event-title" name="title" required>
+              
+                <label for="event-start-date">Start Date:</label>
+                <input class="modal-input modal-start" type="date" id="event-start-date" name="start_date" required>
+          
+                <label class="modal-end-date-text" for="event-end-date">End Date:</label>
+                <input class="modal-input modal-end" type="date" id="event-end-date" name="end_date" required>
+              
+             
+                <label for="event-color">Color:</label>
+                <input class="modal-input modal-color" type="color" id="event-color" name="color">
+              
+                
+                <label for="event-description">Description:</label>
+                <textarea class="modal-input modal-textarea" id="event-description" name="description"></textarea>
+
+                <label for="event-description">Modul:</label>
+                <select name="idk" id="dropdown">
+                  <option value="option1">Option1</option>
+                  <option value="option2">Option2</option>
+                  <option value="option3">Option3</option>
+                </select>
+              </div>
+                <button class="modal-btn btn-style" type="submit">Create</button>
+              </form>
+            </div>
+          </div>
 
 
+          <div id="event-form-clickevent" class="modal">
+            <div class="modal-content">
+              <span class="close2">&times;</span>
+              <h2 class="modal-title">Thema ändern</h2>
+              <form class="modal-content-flex">
+              <div class="modal-add-event">
+                <label for="event-title">Title:</label>
+                <input class="modal-input modal-title2" type="text" id="event-title2" name="title" required>
+              
+                <label for="event-start-date">Start Date:</label>
+                <input class="modal-input modal-start" type="date" id="event-start-date2" name="start_date" required>
+          
+                <label class="modal-end-date-text" for="event-end-date">End Date:</label>
+                <input class="modal-input modal-end" type="date" id="event-end-date2" name="end_date" required>
+              
+             
+                <label for="event-color">Color:</label>
+                <input class="modal-input modal-color" type="color" id="event-color2" name="color">
+              
+         
+                <label for="event-description">Description:</label>
+                <textarea class="modal-input modal-textarea" id="event-description2" name="description"></textarea>
+                <label for="event-description">Modul:</label>
+                <select name="idk" id="dropdown">
+                  <option value="option1">Option1</option>
+                  <option value="option2">Option2</option>
+                  <option value="option3">Option3</option>
+                </select>
+              </div>
+                <button class="modal-btn2 btn-style" type="button">Ändern</button>
+                <button class="modal-btn-delete btn-style" type="button" onclick="deleteEvent()">Delete</button>
+
+              </form>
+            </div>
+          </div>
+          <div id="modal-table" class="modal">
+            <div class="modal-content">
+              <span onclick="close_tablemodal()" class="close2">&times;</span>
+              <h2 class="modal-title" id="table-modal-title">Themen zu diesem Modul</h2>
+              <table class="table">
+                <thead class="thead">
+                <tr class="tr">
+                  <th class="th">Title</th>
+                  <th class="th">Farbe</th>
+                  <th class="th">Startdatum</th>
+                  <th class="th">Enddatum</th>
+                  <th class="th">Beschreibung</th>
+                  <th class="th">ID</th>
+                </tr>
+                </thead>
+                <tbody class="tbody">
+                <tr>
+                  <td class="td">Thema 1</td>
+                  <td class="td">Thema 2</td>
+                  <td class="td">Thema 3</td>
+                  <td class="td">Thema 4</td>
+                  <td class="td">Thema 5</td>
+                  <td class="td">Thema 6</td>
+                </tr>
+   
+               
+                </tbody>
+              </table>     
+              </form>
+            </div>
+          </div>
+          
 
 
-    <div class="table-margin">
-      <h2>Themen</h2>
-      <table class="table">
-        <thead class="thead">
-        <tr class="tr">
-          <th class="th">First Name</th>
-          <th class="th">Last Name</th>
-          <th class="th">Job Title</th>
-          <th class="th">Favorite Color</th>
-          <th class="th">Wars or Trek?</th>
-          <th class="th">Name</th>
-          <th class="th">Date of Birth</th>
-          <th class="th">Dream Vacation City</th>
-          <th class="th">GPA</th>
-          <th class="th">Arbitrary Data</th>
-        </tr>
-        </thead>
-        <tbody class="tbody">
-        <tr>
-          <td class="td">James</td>
-          <td class="td">Matman</td>
-          <td class="td">Chief Sandwich Eater</td>
-          <td class="td">Lettuce Green</td>
-          <td class="td">Trek</td>
-          <td class="td">Den</td>
-          <td class="td">January 13, 1979</td>
-          <td class="td">Gotham City</td>
-          <td class="td">3.1</td>
-          <td class="td">RBX-12</td>
-        </tr>
-
-        </tbody>
-      </table>
-
-      <h2>Module</h2>
-      <table class="table">
-        <thead class="thead">
-        <tr class="tr">
-          <th class="th">First Name</th>
-          <th class="th">Last Name</th>
-          <th class="th">Job Title</th>
-          <th class="th">Favorite Color</th>
-          <th class="th">Wars or Trek?</th>
-          <th class="th">Name</th>
-          <th class="th">Date of Birth</th>
-          <th class="th">Dream Vacation City</th>
-          <th class="th">GPA</th>
-          <th class="th">Arbitrary Data</th>
-        </tr>
-        </thead>
-        <tbody class="tbody">
-        <tr>
-          <td class="td">James</td>
-          <td class="td">Matman</td>
-          <td class="td">Chief Sandwich Eater</td>
-          <td class="td">Lettuce Green</td>
-          <td class="td">Trek</td>
-          <td class="td">Dn</td>
-          <td class="td">January 13, 1979</td>
-          <td class="td">Gotham City</td>
-          <td class="td">3.1</td>
-          <td class="td">RBX-12</td>
-        </tr>
-
-        </tbody>
-      </table>
-    </div>
+          <div class="table-margin">
+            <h2>Themen</h2>
+            <table class="table">
+              <thead class="thead">
+                <tr class="tr">
+                  <th class="th">Module</th>
+                </tr>
+              </thead>
+              <tbody class="tbody" id="tableBody">
+                <tr th:each="module : ${moduleList}">
+                  <td class="td" th:text="${module.name}" onclick="table_modal(this)"></td>
+                </tr>
+              </tbody>
+            </table>
+               
+            
+ 
+          </div>
 
 
+          
 
 
-
-  </div>
-
+          </div>
 
 
-</div>
-
-
-
+          
+          </div>
 
 
 </div>

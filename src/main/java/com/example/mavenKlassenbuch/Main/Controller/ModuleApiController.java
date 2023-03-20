@@ -2,6 +2,7 @@ package com.example.mavenKlassenbuch.Main.Controller;
 
 import com.example.mavenKlassenbuch.Main.Model.Module;
 import com.example.mavenKlassenbuch.Main.Model.ModuleRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class ModuleApiController {
     @GetMapping("/module/{id}")
     public Module getModuleById(@PathVariable(value = "id") Long module_id) {
         return moduleRepository.findById(module_id)
-                .orElseThrow(() -> new RuntimeException("Modul wurde nicht gefunden."));
+                .orElseThrow(() -> new EntityNotFoundException("Modul wurde nicht gefunden."));
     }
 
     @PostMapping("/module")
@@ -35,7 +36,7 @@ public class ModuleApiController {
     @PutMapping("/module/{module_id}")
     public Module updateModule(@PathVariable(value = "module_id") Long module_id, @Validated @RequestBody Module moduleDetails) {
         Module module = moduleRepository.findById(module_id)
-                .orElseThrow(() -> new RuntimeException("Modul wurde nicht gefunden."));
+                .orElseThrow(() -> new EntityNotFoundException("Modul wurde nicht gefunden."));
 
         module.setName(moduleDetails.getName());
 
@@ -45,7 +46,7 @@ public class ModuleApiController {
     @DeleteMapping("/module/{id}")
     public ResponseEntity<?> deleteModul(@PathVariable(value = "id") Long module_id) {
         Module module = moduleRepository.findById(module_id)
-                .orElseThrow(() -> new RuntimeException("Modul wurde nicht gefunden."));
+                .orElseThrow(() -> new EntityNotFoundException("Modul wurde nicht gefunden."));
 
         moduleRepository.delete(module);
 
