@@ -1,0 +1,23 @@
+nav{
+    border-bottom: 2px solid black;
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 40px;
+    padding-top: 10px;
+}
+*{
+    margin: 0;
+}
+button{
+    width: 70px;
+    background-color: #207EEF;
+    border: none;
+    color: white;
+    margin-bottom: 5px;
+    transition: 0.5s;
+}
+button:hover{
+    font-weight: bold;
+    background-color: blue;
+}
