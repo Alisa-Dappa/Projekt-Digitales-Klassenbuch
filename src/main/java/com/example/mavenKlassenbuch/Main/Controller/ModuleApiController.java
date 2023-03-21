@@ -4,6 +4,7 @@ import com.example.mavenKlassenbuch.Main.Model.Module;
 import com.example.mavenKlassenbuch.Main.Model.ModuleRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,13 @@ public class ModuleApiController {
     @GetMapping("/module")
     public List<Module> getAllModules() {
         return moduleRepository.findAll();
+    }
+
+    @GetMapping("/dashboard-home")
+    public String getModule(Model model) {
+        List<Module> moduleList = moduleRepository.findAll();
+        model.addAttribute("moduleList", moduleList);
+        return "dashboard-home.html";
     }
 
     @GetMapping("/module/{id}")

@@ -19,17 +19,17 @@ public class ThemaApiController {
     private ThemaRepository themaRepository;
     private ModuleRepository moduleRepository;
 
-    @GetMapping("/module/{module_Id}/themen")
+    @GetMapping("/module/{module_Id}/thema")
     public List<Thema> getAllThemenByModule_Id(@PathVariable(value = "module_id") Long module_id) {
         return themaRepository.findByModule_Id(module_id);
     }
-    @GetMapping("/themen/{id}")
+    @GetMapping("/thema/{id}")
     public Thema getThemaById(@PathVariable(value = "id") Long thema_id) {
         return themaRepository.findById(thema_id)
                 .orElseThrow(() -> new EntityNotFoundException("Thema wurde nicht gefunden."));
     }
 
-    @PostMapping("/module/{module_Id}/themen")
+    @PostMapping("/module/{module_Id}/thema")
     public Thema createThema(@PathVariable(value = "module_Id") Long module_id, @Validated @RequestBody Thema thema) {
         Module module = moduleRepository.findById(module_id)
                 .orElseThrow(() -> new EntityNotFoundException("Modul wurde nicht gefunden."));
@@ -37,14 +37,14 @@ public class ThemaApiController {
         return themaRepository.save(thema);
     }
 
-    @PutMapping("/themen/{id}")
+    @PutMapping("/thema/{id}")
     public Thema updateThema(@PathVariable(value = "id") Long thema_id,
                              @Validated @RequestBody Thema themaDetails) {
 
         Thema thema = themaRepository.findById(thema_id)
                 .orElseThrow(() -> new EntityNotFoundException("Thema wurde nicht gefunden."));
 
-        thema.setBezeichnung(themaDetails.getBezeichnung());
+        thema.setDescription(themaDetails.getDescription());
 
         return themaRepository.save(thema);
     }

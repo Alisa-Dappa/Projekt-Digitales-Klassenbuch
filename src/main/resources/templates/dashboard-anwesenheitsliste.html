@@ -9,13 +9,17 @@
     <link rel="stylesheet" href="anwesenheitsliste.css">
     <script src='../dist/index.global.js'></script>
     <title>Document</title>
+<!--
+- Bei den Links in der Sidebar muss ich noch überall die Verbindung besser machen. z.B /dashboard-home usw.
+- 
 
+-->
 
 </head>
 <body>
 
-
-
+</head>
+<body>
     <script>
         
         window.onload = function() {
@@ -131,7 +135,7 @@ clearButton.addEventListener("click", function () {
             <p>Name of the user</p>
         </div>
         <div class="nav-items">
-            <svg class="navbar-icon icon icon-tabler icon-tabler-home " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg>
+            <svg class="navbar-icon icon icon-tabler icon-tabler-home "xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg>
             <a style="text-decoration: none;" href="/dashboard-home">Home</a>
         </div>
         <div class="nav-items">
@@ -218,6 +222,7 @@ clearButton.addEventListener("click", function () {
         </div>
       </div>
     </div>
+    </div>
 
 
       <div id="event-form" class="modal">
@@ -228,15 +233,15 @@ clearButton.addEventListener("click", function () {
           <form class="modal-content-flex">
             <canvas id="signature-field" height="500px" width="800px" style="border: 2px solid black;"></canvas>
            <p>Das Unterschrift Element, braucht eine bestimmte Display-Größe, damit es angezeigt werden kann.</p>
-
+        </div>
           <div>
             <button class="modal-btn btn-style" type="submit">Einreichen</button>
             <button id="clear-button" type="button">Unterschrift neu machen</button>
           </div>
-
+        </div>
           </form>
         </div>
       </div>
-      </div>
+
 </body>
 </html>

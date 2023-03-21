@@ -437,7 +437,7 @@ body {
             <label for="event-description">Modul:</label>
             <select name="idk" id="dropdown">
               <option value="">Choose an option</option>
-              <option th:each="Module : ${moduleList}" th:value="${module.name}" th:text="${module.name}"></option>
+              <option th:each="Module : ${moduleList}" value="${module}" th:text="${id}"></option>
             </select>
 
           </div>
@@ -472,7 +472,7 @@ body {
             <label for="event-description">Modul:</label>
             <select name="idk" id="dropdown2">
               <option value="">Choose an option</option>
-              <option th:each="module : ${moduleList}" th:value="${module.name}" th:text="${module.name}"></option>
+              <option th:each="module : ${moduleList}" value="${module}" th:text="${id}"></option>
             </select>
           </div>
           <button class="modal-btn2 btn-style" type="button">Ändern</button>
@@ -517,18 +517,7 @@ body {
 
     <div class="table-margin">
       <h2>Module</h2>
-      <table class="table">
-        <thead class="thead">
-        <tr class="tr">
-          <th class="th">Modul</th>
-        </tr>
-        </thead>
-        <tbody class="tbody" id="tableBody">
-        <tr th:each="module : ${moduleList}">
-          <td class="td" th:text="${module.name}" onclick="table_modal(this)"></td>
-        </tr>
-        </tbody>
-      </table>
+      <table class="table">              <thead class="thead">                <tr class="tr">                  <th class="th">Modul</th>                  <th class="th">ID</th>                </tr>              </thead>              <tbody class="tbody" id="tableBody">                <tr th:each="module : ${moduleList}">                  <td class="td" th:text="${module.name}" onclick="table_modal(this)"></td>                  <td class="td" th:text="${module.id}"></td>                </tr>              </tbody>            </table>
 
 
     </div>

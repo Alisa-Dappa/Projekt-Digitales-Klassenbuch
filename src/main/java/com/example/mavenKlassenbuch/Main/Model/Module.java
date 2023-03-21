@@ -24,7 +24,7 @@ import java.util.List;
 
         //Hier wird implementiert, dass ein Modul, mehrere Themen haben kann. => One to Many
         @OneToMany(mappedBy = "module", cascade = CascadeType.ALL, orphanRemoval = true)
-        private List<Thema> themen;
+        private List<Thema> thema;
 
     }
 
