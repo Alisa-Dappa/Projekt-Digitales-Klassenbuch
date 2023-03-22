@@ -79,7 +79,7 @@ if (endDate) {
     url: '/api/thema/',
     type: 'PUT',
     contentType: 'application/json' + eventidcurrent,
-    data: {
+    data: JSON.stringify({
       title: title,
       startD: start,
       endD: end,
@@ -87,7 +87,7 @@ if (endDate) {
       description: description,
       jsid: id,
       module_id: module_id
-    },
+    }),
     success: function(data) {
       // Ereignis erfolgreich aktualisiert
       console.log(data);
@@ -105,7 +105,7 @@ if (endDate) {
     url: '/api/thema/' + eventidcurrent,
     type: 'PUT',
     contentType: 'application/json',
-    data: {
+    data: JSON.stringify({
       title: title,
       startD: start,
       endD: end,
@@ -113,7 +113,7 @@ if (endDate) {
       description: description,
       jsid: id,
       module_id: module_id
-    },
+    }),
     success: function(data) {
       // Ereignis erfolgreich aktualisiert
       console.log(data);
@@ -142,14 +142,14 @@ if (endDate) {
       // Ereignisse im Kalender anzeigen
       var events = [];
       $.each(response, function(index, event) {
-        events.push({
+        events.push(JSON.stringify({
           id: event.id,
           title: event.title,
           startD: event.start,
           endD: event.end,
           color: event.color,
           module_id: module_id
-        });
+        }));
       });
       $('#calendar').fullCalendar('addEventSource', events);
     },
@@ -204,7 +204,7 @@ if (endDate) {
     url: '/api/thema/' + eventidcurrent,
     type: 'PUT',
     contentType: 'application/json',
-    data: {
+    data: JSON.stringify({
       title: title,
       startD: start,
       endD: end,
@@ -212,7 +212,7 @@ if (endDate) {
       description: description,
       jsid: id,
       module_id: module_id
-    },
+    }),
     success: function(data) {
       // Ereignis erfolgreich aktualisiert
       console.log(data);
@@ -318,7 +318,7 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
     url: "/api/thema",
     type: "POST",
     contentType: "application/json",
-    data: {
+    data: JSON.stringify({
       title: title,
       startD: start,
       endD: end,
@@ -326,7 +326,7 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
       description: description,
       jsid: id,
       module_id: module_id
-    },
+    }),
     success: function(data) {
       // Ereignis erfolgreich erstellt
       console.log(data);
@@ -376,15 +376,15 @@ function open_modal_add_modul(){
 function add_modulbtn(){
   var id = document.querySelectorAll('.count').length +1;
   console.log(id)
-  var title = document.getElementById('add_modul_field').value;
+  var name = document.getElementById('add_modul_field').value;
   $.ajax({
-    url: "/api/modul",
+    url: "/api/module",
     type: "POST",
     contentType: "application/json",
-    data: {
+    data: JSON.stringify({
       module_id: id,
-      title: title,
-    },
+      name: name,
+    }),
     success: function(data) {
       // Ereignis erfolgreich erstellt
       console.log(data);
@@ -394,7 +394,10 @@ function add_modulbtn(){
       console.log(error);
     }
   });
-
+  setTimeout(() => {
+    document.location.reload();
+}, 1000);
+  
 }
 </script>
 
