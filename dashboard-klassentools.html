@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="klassentools.css">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+
+  function generate_random_number(){
+    const generateBtn = document.getElementById('generateBtn');
+const result = document.getElementById('result');
+
+
+  const min = document.getElementById('min').value;
+  const max = document.getElementById('max').value;
+  const randomNum = Math.floor(Math.random() * (parseInt(max) - parseInt(min) + 1)) + parseInt(min);
+  
+  result.innerHTML = `Die zufällige Zahl lautet: ${randomNum}`;
+  }
+  function copy1(){
+      // Get the text field
+      var copyText = document.getElementById("link1");
+
+// Select the text field
+copyText.select();
+copyText.setSelectionRange(0, 99999); // For mobile devices
+
+// Copy the text inside the text field
+navigator.clipboard.writeText(copyText.value);
+
+// Alert the copied text
+alert("Copied the text: " + copyText.value);
+}
+function copy2(){
+      // Get the text field
+      var copyText = document.getElementById("link2");
+
+// Select the text field
+copyText.select();
+copyText.setSelectionRange(0, 99999); // For mobile devices
+
+// Copy the text inside the text field
+navigator.clipboard.writeText(copyText.value);
+
+// Alert the copied text
+alert("Copied the text: " + copyText.value);
+}
+function copy3(){
+      // Get the text field
+      var copyText = document.getElementById("link3");
+
+// Select the text field
+copyText.select();
+copyText.setSelectionRange(0, 99999); // For mobile devices
+
+// Copy the text inside the text field
+navigator.clipboard.writeText(copyText.value);
+
+// Alert the copied text
+alert("Copied the text: " + copyText.value);
+}
+function copy4(){
+      // Get the text field
+      var copyText = document.getElementById("link4");
+
+// Select the text field
+copyText.select();
+copyText.setSelectionRange(0, 99999); // For mobile devices
+
+// Copy the text inside the text field
+navigator.clipboard.writeText(copyText.value);
+
+// Alert the copied text
+alert("Copied the text: " + copyText.value);
+}
+function copy5(){
+      // Get the text field
+      var copyText = document.getElementById("link5");
+
+// Select the text field
+copyText.select();
+copyText.setSelectionRange(0, 99999); // For mobile devices
+
+// Copy the text inside the text field
+navigator.clipboard.writeText(copyText.value);
+
+// Alert the copied text
+alert("Copied the text: " + copyText.value);
+}
+  
+
+
+
+    </script>
+    <div class="main-page"> 
+    
+        <nav>
+            <div class="userinfo-navbar">
+                <img class="profilepicture-navbar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png">
+                <p>Name of the user</p>
+            </div>
+            <div class="nav-items">
+                <svg class="navbar-icon icon icon-tabler icon-tabler-home "xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg>
+                <a style="text-decoration: none;" href="/dashboard-home">Home</a>
+            </div>
+            <div class="nav-items">
+                <svg class="navbar-icon icon icon-tabler icon-tabler-color-swatch" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M19 3h-4a2 2 0 0 0 -2 2v12a4 4 0 0 0 8 0v-12a2 2 0 0 0 -2 -2"></path><path d="M13 7.35l-2 -2a2 2 0 0 0 -2.828 0l-2.828 2.828a2 2 0 0 0 0 2.828l9 9"></path><path d="M7.3 13h-2.3a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h12"></path><path d="M17 17l0 .01"></path></svg>
+                <a style="text-decoration: none;">Themenwahl</a>
+            </div>
+            <div class="nav-items ">
+            <svg class="navbar-icon icon icon-tabler icon-tabler-question-mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path><path d="M12 19l0 .01"></path></svg>
+                <a style="text-decoration: none;"  href="/dashboard-anwesenheitsliste">Anwesenheitsliste</a>
+            </div>
+            <div class="nav-items activesite">
+                <svg class="navbar-icon icon icon-tabler icon-tabler-question-mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path><path d="M12 19l0 .01"></path></svg>
+                <a style="text-decoration: none;" class="activesite" href="/dashboard-klassentools">Klassentools</a>
+            </div>  
+            </nav>
+        <div class="main">
+
+
+            <div class="container">
+                <h1>Zufallsgenerator</h1>
+                <p class="p">Geben Sie die niedrigste und höchste Zahl ein:</p>
+                <input type="number" id="min" placeholder="Niedrigste Zahl">
+                <input type="number" id="max" placeholder="Höchste Zahl">
+                <button id="generateBtn" onclick="generate_random_number()">Generieren</button>
+                <p class="p" id="result">Die zufällige Zahl lautet: </p>
+              </div>
+            <div class="copy-links">
+                <h1>Nützliche Links</h1>
+                <div>
+                <input class="input-field-lenght" id="link1" type="text" value="https://sqltrainer.mischok.academy"
+       class="field left" readonly="readonly">
+       <button onclick="copy1()">Copy</button>
+       <button onclick="window.open('https://sqltrainer.mischok.academy', '_blank')">Open</button>
+       </div>
+       <div>
+        <input class="input-field-lenght" type="text"id="link2" value="https://prelive-sqltrainer.mischok.academy/java-2/practice"
+            class="field left" readonly="readonly">
+            <button onclick="copy2()">Copy</button>
+            <button onclick="window.open('https://prelive-sqltrainer.mischok.academy/java-2/practice', '_blank')">Open</button>
+            </div>
+            <div>
+                <input class="input-field-lenght" type="text"id="link3" value="https://www.w3schools.com/"
+            class="field left" readonly="readonly">
+            <button onclick="copy3()">Copy</button>
+            <button onclick="window.open('https://www.w3schools.com/', '_blank')">Open</button>
+            </div>
+            <div>
+                <input class="input-field-lenght" type="text"id="link4" value="https://stackoverflow.com"
+            class="field left" readonly="readonly">
+            <button onclick="copy4()">Copy</button>
+            <button onclick="window.open('https://stackoverflow.com', '_blank')">Open</button>
+            </div>
+            <div>
+                <input class="input-field-lenght" type="text"id="link5" value="https://www.office.com/"
+            class="field left" readonly="readonly">
+            <button onclick="copy5()">Copy</button>
+            <button onclick="window.open('https://www.office.com/', '_blank')">Open</button>
+            </div>
+            </div>
+
+
+            </div>
+
+
+</body>
+</html>

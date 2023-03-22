@@ -1,0 +1,48 @@
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 3rem;
+  }
+  
+  input {
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #005F6B;
+  }
+  
+  .p {
+    font-size: 1.5rem;
+    margin-top: 20px;
+  }
+  .container, .copy-links{
+    margin: 25px;
+
+  }
+  .main{
+    display: flex;
+  }
+  @media (max-width: 1250px) {
+    .main{
+        flex-direction: column;
+    }}
+
+.input-field-lenght{
+    width: 300px;
+}    
