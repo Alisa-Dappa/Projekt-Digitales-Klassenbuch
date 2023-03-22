@@ -148,7 +148,7 @@ if (endDate) {
           startD: event.start,
           endD: event.end,
           color: event.color,
-          module_id: module_id
+          module_id: event.module_id
         });
       });
       $('#calendar').fullCalendar('addEventSource', events);
@@ -325,7 +325,7 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
       endD: end,
       color: color,
       description: description,
-      jsid: id,
+      jsID: id,
       module_id: module_id
     }),
     success: function(data) {

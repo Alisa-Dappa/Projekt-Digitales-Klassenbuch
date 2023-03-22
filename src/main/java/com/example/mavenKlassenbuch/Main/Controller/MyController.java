@@ -39,6 +39,11 @@ import java.util.List;
             model.addAttribute("Klassenbuch", name);
             return "dashboard-anwesenheitsliste";
         }
+        @GetMapping("/dashboard-klassentools")
+        public String klassentools(@RequestParam(name = "Klassenbuch", required = false) String name, Model model) {
+            model.addAttribute("Klassenbuch", name);
+            return "dashboard-klassentools";
+        }
 
         @GetMapping("/")
         public List<Module> getAllModules() {
@@ -76,7 +81,7 @@ import java.util.List;
             return ResponseEntity.ok().build();
         }
 
-        @GetMapping("/module/{module_Id}/thema")
+        @GetMapping("/module/{module_id}/thema")
         public List<Thema> getAllThemenByModule_Id(@PathVariable(value = "module_id") Long module_id) {
             return themaRepository.findByModule_Id(module_id);
         }
@@ -87,8 +92,8 @@ import java.util.List;
                     .orElseThrow(() -> new EntityNotFoundException("Thema wurde nicht gefunden."));
         }
 
-        @PostMapping("/module/{module_Id}/thema")
-        public Thema createThema(@PathVariable(value = "module_Id") Long module_id, @Validated @RequestBody Thema thema) {
+        @PostMapping("/module/{module_id}/thema")
+        public Thema createThema(@PathVariable(value = "module_id") Long module_id, @Validated @RequestBody Thema thema) {
             Module module = moduleRepository.findById(module_id)
                     .orElseThrow(() -> new EntityNotFoundException("Modul wurde nicht gefunden."));
             thema.setModule(module);

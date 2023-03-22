@@ -23,7 +23,7 @@ import lombok.Setter;
         private String color;
         private String description;
         private String jsID;
-        @ManyToOne(fetch = FetchType.LAZY)
+        @ManyToOne
         @JoinColumn(name = "module_id")
         private Module module;
 
