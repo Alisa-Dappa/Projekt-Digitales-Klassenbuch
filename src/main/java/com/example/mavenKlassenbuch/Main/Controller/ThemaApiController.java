@@ -6,6 +6,7 @@ import com.example.mavenKlassenbuch.Main.Model.Thema;
 import com.example.mavenKlassenbuch.Main.Model.ThemaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,10 +17,22 @@ import java.util.List;
 public class ThemaApiController {
 
     @Autowired
-    private ThemaRepository themaRepository;
-    private ModuleRepository moduleRepository;
+    private final ThemaRepository themaRepository;
 
-    @GetMapping("/module/{module_Id}/thema")
+    @Autowired
+    private final ModuleRepository moduleRepository;
+
+    public ThemaApiController(ThemaRepository themaRepository, ModuleRepository moduleRepository) {
+        this.themaRepository = themaRepository;
+        this.moduleRepository = moduleRepository;
+    }
+
+    @GetMapping("/thema")
+    public List<Thema> getallThemen() {
+        return themaRepository.findAll();
+    }
+
+    @GetMapping("/module/{module_id}/thema")
     public List<Thema> getAllThemenByModule_Id(@PathVariable(value = "module_id") Long module_id) {
         return themaRepository.findByModule_Id(module_id);
     }
@@ -29,13 +42,14 @@ public class ThemaApiController {
                 .orElseThrow(() -> new EntityNotFoundException("Thema wurde nicht gefunden."));
     }
 
-    @PostMapping("/module/{module_Id}/thema")
-    public Thema createThema(@PathVariable(value = "module_Id") Long module_id, @Validated @RequestBody Thema thema) {
+    @PostMapping("/module/{module_id}/thema")
+    public Thema createThema(@PathVariable(value = "module_id") Long module_id, @Validated @RequestBody Thema thema) {
         Module module = moduleRepository.findById(module_id)
                 .orElseThrow(() -> new EntityNotFoundException("Modul wurde nicht gefunden."));
         thema.setModule(module);
         return themaRepository.save(thema);
     }
+
 
     @PutMapping("/thema/{id}")
     public Thema updateThema(@PathVariable(value = "id") Long thema_id,
@@ -48,5 +62,18 @@ public class ThemaApiController {
 
         return themaRepository.save(thema);
     }
+    @PutMapping("/thema/{jsID}")
+    public ResponseEntity<Thema> updateThema(@PathVariable(value = "jsID") String jsID,
+                                             @Validated @RequestBody Thema themaDetails) {
+
+        Thema thema = themaRepository.findByJsID(jsID)
+                .orElseThrow(() -> new EntityNotFoundException("Thema wurde nicht gefunden."));
+
+        thema.setDescription(themaDetails.getDescription());
+
+        Thema updatedThema = themaRepository.save(thema);
+        return ResponseEntity.ok(updatedThema);
+    }
+
 
 }

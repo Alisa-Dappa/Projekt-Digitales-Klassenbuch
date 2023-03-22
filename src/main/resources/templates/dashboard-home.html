@@ -10,7 +10,12 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!--
     Seite für den Stundenplan erstellen mit iframe
+    und für office.com
 
+    in anwesenheitsliste ein Button zum Schüler hinzufügen + Klassenauswahl
+    + Schüler löschen
+
+    Zweite Zeile in Table reihe
   -->
 
   <script>
@@ -71,10 +76,18 @@ if (endDate) {
     eventDrop: function(info){
       var eventidcurrent = eventid
       $.ajax({
-    url: '/api/module/',
+    url: '/api/thema/',
     type: 'PUT',
     contentType: 'application/json' + eventidcurrent,
-    data: JSON.stringify(info.event),
+    data: JSON.stringify({
+      title: title,
+      startD: start,
+      endD: end,
+      color: color,
+      description: description,
+      jsid: id,
+      module_id: module_id
+    }),
     success: function(data) {
       // Ereignis erfolgreich aktualisiert
       console.log(data);
@@ -89,10 +102,18 @@ if (endDate) {
     eventResize:function(info){
       var eventidcurrent = eventid
       $.ajax({
-    url: '/api/module/' + eventidcurrent,
+    url: '/api/thema/' + eventidcurrent,
     type: 'PUT',
     contentType: 'application/json',
-    data: JSON.stringify(info.event),
+    data: JSON.stringify({
+      title: title,
+      startD: start,
+      endD: end,
+      color: color,
+      description: description,
+      jsid: id,
+      module_id: module_id
+    }),
     success: function(data) {
       // Ereignis erfolgreich aktualisiert
       console.log(data);
@@ -114,7 +135,7 @@ if (endDate) {
       // fetch events from Spring Boot API
       $(document).ready(function() {
   $.ajax({
-    url: '/api/module', // URL zur Abfrage der Ereignisse
+    url: '/api/thema', // URL zur Abfrage der Ereignisse
     type: 'GET',
     dataType: 'json',
     success: function(response) {
@@ -124,9 +145,10 @@ if (endDate) {
         events.push({
           id: event.id,
           title: event.title,
-          start: event.start,
-          end: event.end,
-          color: event.color
+          startD: event.start,
+          endD: event.end,
+          color: event.color,
+          module_id: module_id
         });
       });
       $('#calendar').fullCalendar('addEventSource', events);
@@ -149,7 +171,7 @@ if (endDate) {
   var color = document.getElementById('event-color2').value;
   var description = document.getElementById('event-description2').value;
   var eventidcurrent = eventid
-  var dropdown = document.getElementById('dropdown2').value;
+  var module_id = document.getElementById('dropdown2').value;
   // Hier kannst du die Werte in einem Objekt speichern
   var eventData = {
     title: title,
@@ -157,8 +179,9 @@ if (endDate) {
     end: end,
     backgroundColor: color,
     description: description,
-    dropdown: dropdown
+    module_id: module_id
   };
+
 
   // Hier kannst du die Werte ausgeben, um sicherzustellen, dass sie korrekt erfasst wurden
   console.log(eventData);
@@ -172,14 +195,24 @@ if (endDate) {
     end: end,
     backgroundColor: color,
     description: description,
-    dropdown: dropdown
+    module_id: module_id
   };
 
+
+
   $.ajax({
-    url: '/api/module/' + eventidcurrent,
+    url: '/api/thema/' + eventidcurrent,
     type: 'PUT',
     contentType: 'application/json',
-    data: JSON.stringify(eventData),
+    data: JSON.stringify({
+      title: title,
+      startD: start,
+      endD: end,
+      color: color,
+      description: description,
+      jsid: id,
+      module_id: module_id
+    }),
     success: function(data) {
       // Ereignis erfolgreich aktualisiert
       console.log(data);
@@ -209,7 +242,7 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
   if (event) {
     event.remove(); // Event löschen
     $.ajax({
-    url: "/api/module/" + eventidcurrent,
+    url: "/api/thema/" + eventidcurrent,
     type: "DELETE",
     success: function(data) {
       // Event erfolgreich gelöscht
@@ -263,7 +296,7 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
     var color = document.getElementById('event-color').value;
     var description = document.getElementById('event-description').value;
     var id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-    var dropdown = document.getElementById('dropdown').value;
+    var module_id = document.getElementById('dropdown').value;
 
 
     // Create event object
@@ -276,15 +309,25 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
       extendedProps: {
         description: description
       },
-      dropdown: dropdown
+      module_id: module_id
     };
+//Für Springboot Anfrage über Ajax
 
 
   $.ajax({
-    url: "/api/module",
+    url: "/api/thema",
     type: "POST",
     contentType: "application/json",
-    data: JSON.stringify(eventObj),
+    data: JSON.stringify({
+      id: 2,
+      title: title,
+      startD: start,
+      endD: end,
+      color: color,
+      description: description,
+      jsid: id,
+      module_id: module_id
+    }),
     success: function(data) {
       // Ereignis erfolgreich erstellt
       console.log(data);
@@ -296,7 +339,8 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
   });
 
 
-
+    console.log(start)
+    console.log(end)
 
     // Add the event to the calendar
     calendar.addEvent(eventObj);
@@ -319,7 +363,43 @@ function table_modal(element){
 function close_tablemodal(){
   document.getElementById('modal-table').style.display = 'none';
 }
+function close_tablemodal2(){
+  document.getElementById('modal_add_modul').style.display = 'none';
+}
+function open_modal_add_modul(){
 
+  document.getElementById('modal_add_modul').style.display = 'block';
+
+
+}
+
+
+function add_modulbtn(){
+  var id = document.querySelectorAll('.count').length +1;
+  console.log(id)
+  var name = document.getElementById('add_modul_field').value;
+  $.ajax({
+    url: "/api/module",
+    type: "POST",
+    contentType: "application/json",
+    data: JSON.stringify({
+      module_id: id,
+      name: name,
+    }),
+    success: function(data) {
+      // Ereignis erfolgreich erstellt
+      console.log(data);
+    },
+    error: function(xhr, status, error) {
+      // Fehler beim Erstellen des Ereignisses
+      console.log(error);
+    }
+  });
+  setTimeout(() => {
+    document.location.reload();
+}, 1000);
+
+}
 </script>
 
 
@@ -337,9 +417,7 @@ body {
   width: 900px;
   margin: 0 auto;
 }
-@media (max-width: 760px){
 
-  }
 
 /* Modal styles */
 .modal {
@@ -409,7 +487,7 @@ body {
     <div>
       <div id='calendar'></div>
       <button id="add-event-btn" class="btn-style">+ Thema erstellen</button>
-      <button class="btn-style">+ Modul erstellen</button>
+      <button class="btn-style" onclick="open_modal_add_modul()">+ Modul erstellen</button>
     </div>
     <div id="event-form" class="modal">
       <div class="modal-content">
@@ -435,9 +513,9 @@ body {
             <textarea class="modal-input modal-textarea" id="event-description" name="description"></textarea>
 
             <label for="event-description">Modul:</label>
-            <select name="idk" id="dropdown">
+            <select name="idk" id="dropdown" class="dropdownmenu">
               <option value="">Choose an option</option>
-              <option th:each="Module : ${moduleList}" value="${module}" th:text="${id}"></option>
+              <option th:each="module : ${moduleList}" th:value="${module.id}" th:text="${module.name}"></option>
             </select>
 
           </div>
@@ -470,9 +548,9 @@ body {
             <label for="event-description">Description:</label>
             <textarea class="modal-input modal-textarea" id="event-description2" name="description"></textarea>
             <label for="event-description">Modul:</label>
-            <select name="idk" id="dropdown2">
+            <select name="idk" id="dropdown2" class="dropdownmenu">
               <option value="">Choose an option</option>
-              <option th:each="module : ${moduleList}" value="${module}" th:text="${id}"></option>
+              <option th:each="module : ${moduleList}" th:value="${module.id}" th:text="${module.name}"></option>
             </select>
           </div>
           <button class="modal-btn2 btn-style" type="button">Ändern</button>
@@ -512,15 +590,43 @@ body {
         </form>
       </div>
     </div>
+    <div id="modal_add_modul" class="modal">
+      <div class="modal-content">
+        <span onclick="close_tablemodal2()" class="close2">&times;</span>
+        <h2 class="modal-title" id="table-modal-title2">Modul erstellen</h2>
+        <label for="event-title">Modulname</label>
+        <input class="modal-input" type="text" id="add_modul_field" name="title" required>
+        <button class="modal-btn3 btn-style" onclick="add_modulbtn()" type="submit">hinzufügen</button>
+
+        </form>
+      </div>
+    </div>
+
 
 
 
     <div class="table-margin">
       <h2>Module</h2>
-      <table class="table">              <thead class="thead">                <tr class="tr">                  <th class="th">Modul</th>                  <th class="th">ID</th>                </tr>              </thead>              <tbody class="tbody" id="tableBody">                <tr th:each="module : ${moduleList}">                  <td class="td" th:text="${module.name}" onclick="table_modal(this)"></td>                  <td class="td" th:text="${module.id}"></td>                </tr>              </tbody>            </table>
+      <table class="table">
+        <thead class="thead">
+        <tr class="tr">
+          <th class="th">Modul</th>
+          <th class="th">ID</th>
+        </tr>
+        </thead>
+        <tbody class="tbody" id="tableBody">
+        <tr th:each="module : ${moduleList}" class="count">
+          <td class="td" th:text="${module.name}" onclick="table_modal(this)"></td>
+          <td class="td" th:text="${module.id}"></td>
+
+        </tr>
+        </tbody>
+      </table>
 
 
     </div>
+
+
 
 
   </div>
