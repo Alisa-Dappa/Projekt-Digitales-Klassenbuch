@@ -79,7 +79,15 @@ if (endDate) {
     url: '/api/thema/',
     type: 'PUT',
     contentType: 'application/json' + eventidcurrent,
-    data: JSON.stringify(info.event),
+    data: {
+      title: title,
+      startD: start,
+      endD: end,
+      color: color,
+      description: description,
+      jsid: id,
+      module_id: module_id
+    },
     success: function(data) {
       // Ereignis erfolgreich aktualisiert
       console.log(data);
@@ -97,7 +105,15 @@ if (endDate) {
     url: '/api/thema/' + eventidcurrent,
     type: 'PUT',
     contentType: 'application/json',
-    data: JSON.stringify(info.event),
+    data: {
+      title: title,
+      startD: start,
+      endD: end,
+      color: color,
+      description: description,
+      jsid: id,
+      module_id: module_id
+    },
     success: function(data) {
       // Ereignis erfolgreich aktualisiert
       console.log(data);
@@ -129,8 +145,8 @@ if (endDate) {
         events.push({
           id: event.id,
           title: event.title,
-          start: event.start,
-          end: event.end,
+          startD: event.start,
+          endD: event.end,
           color: event.color,
           module_id: module_id
         });
@@ -188,7 +204,15 @@ if (endDate) {
     url: '/api/thema/' + eventidcurrent,
     type: 'PUT',
     contentType: 'application/json',
-    data: JSON.stringify(eventObj),
+    data: {
+      title: title,
+      startD: start,
+      endD: end,
+      color: color,
+      description: description,
+      jsid: id,
+      module_id: module_id
+    },
     success: function(data) {
       // Ereignis erfolgreich aktualisiert
       console.log(data);
@@ -295,14 +319,13 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
     type: "POST",
     contentType: "application/json",
     data: {
-      jsid: id,
       title: title,
       startD: start,
       endD: end,
       color: color,
       description: description,
+      jsid: id,
       module_id: module_id
-
     },
     success: function(data) {
       // Ereignis erfolgreich erstellt
@@ -351,9 +374,26 @@ function open_modal_add_modul(){
 
 
 function add_modulbtn(){
-  var id = document.querySelectorAll('.count').length;
+  var id = document.querySelectorAll('.count').length +1;
   console.log(id)
-  var title = document.getElementById('modal-title3').value;
+  var title = document.getElementById('add_modul_field').value;
+  $.ajax({
+    url: "/api/modul",
+    type: "POST",
+    contentType: "application/json",
+    data: {
+      module_id: id,
+      title: title,
+    },
+    success: function(data) {
+      // Ereignis erfolgreich erstellt
+      console.log(data);
+    },
+    error: function(xhr, status, error) {
+      // Fehler beim Erstellen des Ereignisses
+      console.log(error);
+    }
+  });
 
 }
 </script>
@@ -549,9 +589,9 @@ body {
           <div id="modal_add_modul" class="modal">
             <div class="modal-content">
               <span onclick="close_tablemodal2()" class="close2">&times;</span>
-              <h2 class="modal-title" id="table-modal-title">Modul erstellen</h2>
+              <h2 class="modal-title" id="table-modal-title2">Modul erstellen</h2>
               <label for="event-title">Modulname</label>
-              <input class="modal-input" type="text" id="event-title3  modal-title3" name="title" required>
+              <input class="modal-input" type="text" id="add_modul_field" name="title" required>
               <button class="modal-btn3 btn-style" onclick="add_modulbtn()" type="submit">hinzufügen</button>
                
               </form>
