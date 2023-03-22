@@ -18,8 +18,8 @@ import lombok.Setter;
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
         private String title;
-        private String start;
-        private String end;
+        private String startD;
+        private String endD;
         private String color;
         private String description;
         private String jsID;

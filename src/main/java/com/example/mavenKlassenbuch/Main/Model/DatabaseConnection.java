@@ -43,20 +43,21 @@ public class DatabaseConnection {
             // Erstellt Modul Tabelle
             String createModuleTable = "CREATE TABLE IF NOT EXISTS module ("
                     + "id SERIAL PRIMARY KEY,"
-                    + "name VARCHAR(255) NOT NULL)";
-            statement.executeUpdate(createModuleTable);
+                    + "name VARCHAR(255) NOT NULL);";
+            statement.execute(createModuleTable);
 
             // Erstellt Thema Tabelle
             String createThemaTable = "CREATE TABLE IF NOT EXISTS thema ("
                     + "id SERIAL PRIMARY KEY,"
-                    + "bezeichnung VARCHAR(255) NOT NULL,"
-                    + "startdatum VARCHAR(255),"
-                    + "enddatum VARCHAR(255),"
-                    + "farbe VARCHAR(255),"
+                    + "title VARCHAR(255) NOT NULL,"
+                    + "startD VARCHAR(255),"
+                    + "endD VARCHAR(255),"
+                    + "color VARCHAR(255),"
+                    + "description VARCHAR(255),"
                     + "jsID VARCHAR(255),"
-                    + "module_id INTEGER REFERENCES module(id))";
+                    + "module_id INTEGER REFERENCES module(id));";
 
-            statement.executeUpdate(createThemaTable);
+            statement.execute(createThemaTable);
 
             System.out.println("Tables created successfully.");
         } catch (SQLException e) {
