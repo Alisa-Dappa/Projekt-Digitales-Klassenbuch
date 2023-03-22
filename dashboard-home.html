@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="sidebar.css">
 <link rel="stylesheet" href="table.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <!--
   Seite für den Stundenplan erstellen mit iframe
   und für office.com
@@ -22,6 +23,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   var eventid;
+  var tableidclick = 0;
   var calendarEl = document.getElementById('calendar');
 
   var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -40,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
           color: '#378006',
           description: 'Eine Beschreibung meines Events'
         },
+        
       ],
     initialDate: new Date(),
     navLinks: true, // can click day/week names to navigate views
@@ -142,14 +145,15 @@ if (endDate) {
       // Ereignisse im Kalender anzeigen
       var events = [];
       $.each(response, function(index, event) {
-        events.push(JSON.stringify({
+        events.push({
           id: event.id,
           title: event.title,
           startD: event.start,
           endD: event.end,
           color: event.color,
+          description: event.description,
           module_id: module_id
-        }));
+        });
       });
       $('#calendar').fullCalendar('addEventSource', events);
     },
@@ -357,6 +361,8 @@ function table_modal(element){
   console.log(element.textContent);
   document.getElementById('modal-table').style.display = 'block';  
   document.getElementById("table-modal-title").textContent = element.textContent;
+  tableidclick = row.getAttribute("data-id");
+
   
 }
 function close_tablemodal(){
@@ -398,6 +404,25 @@ function add_modulbtn(){
     document.location.reload();
 }, 1000);
   
+}
+function del_modul(){
+  var id = tableidclick
+  $.ajax({
+    url: "/api/module/" + id,
+    type: "DELETE",
+    success: function(data) {
+      // Event erfolgreich gelöscht
+      console.log(data);
+    },
+    error: function(xhr, status, error) {
+      // Fehler beim Löschen des Events
+      console.log(error);
+    }
+  });
+
+  setTimeout(() => {
+    document.location.reload();
+}, 1000);
 }
 </script>
 
@@ -583,9 +608,10 @@ body {
                   <td class="td">Thema 6</td>
                 </tr>
    
-               
+                <button class="modal-btn3 btn-style btn-style-modal-table" onclick="del_modul()" type="submit">Modul löschen</button>
                 </tbody>
               </table>     
+
               </form>
             </div>
           </div>
@@ -605,7 +631,7 @@ body {
 
 
           <div class="table-margin">
-            <h2>Module</h2>
+            <h2 class="table-title-head">Module</h2>
             <table class="table">
               <thead class="thead">
                 <tr class="tr">
@@ -614,11 +640,12 @@ body {
                 </tr>
               </thead>
               <tbody class="tbody" id="tableBody">
-                <tr th:each="module : ${moduleList}" class="count">
-                  <td class="td" th:text="${module.name}" onclick="table_modal(this)"></td>
-                  <td class="td" th:text="${module.id}"></td>
+                <tr th:each="module : ${moduleList}" class="count" th:attr="data-id=${module.id}">
+                  <td class="td tdhover" th:text="${module.name}" onclick="table_modal(this)">t</td>
+                  <td class="td" th:text="${module.id}">o</td>
                  
                 </tr>
+
               </tbody>
             </table>
                
