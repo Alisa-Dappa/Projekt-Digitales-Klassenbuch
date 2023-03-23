@@ -245,22 +245,22 @@ calendar.render();
 });
 
 document.querySelector('.modal-btn-delete').addEventListener('click', function() {
-  var eventIdcurrent = eventid; // ID des ausgewählten Events
-  var event = calendar.getEventById(eventIdcurrent); // Event-Objekt abrufen
+  var eventidcurrent = eventid; // ID des ausgewählten Events
+  var event = calendar.getEventById(eventidcurrent); // Event-Objekt abrufen
   if (event) {
     event.remove(); // Event löschen
     $.ajax({
-    url: "/api/thema/" + eventidcurrent,
-    type: "DELETE",
-    success: function(data) {
-      // Event erfolgreich gelöscht
-      console.log(data);
-    },
-    error: function(xhr, status, error) {
-      // Fehler beim Löschen des Events
-      console.log(error);
-    }
-  });
+      url: "/api/thema/" + eventidcurrent,
+      type: "DELETE",
+      success: function(data) {
+        // Event erfolgreich gelöscht
+        console.log(data);
+      },
+      error: function(xhr, status, error) {
+        // Fehler beim Löschen des Events
+        console.log(error);
+      }
+    });
 
 
   }
@@ -305,7 +305,7 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
     var description = document.getElementById('event-description').value;
     var id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     var module_id = document.getElementById('dropdown').value;
-    var eventcount = calendar.getEvents().length +2;
+
     console.log(eventcount)
     // Create event object
     var eventObj = {
@@ -323,18 +323,17 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
     
     
   $.ajax({
-    url: "/module/" + eventcount + "/thema",
+    url: "/module/" + module_id + "/thema",
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify({
-    
       title: title,
       startD: start,
       endD: end,
       color: color,
       description: description,
       jsID: id,
-      module_id: module_id
+      
       
      
     }),
@@ -368,7 +367,7 @@ function table_modal(element){
   console.log(element.textContent);
   document.getElementById('modal-table').style.display = 'block';  
   document.getElementById("table-modal-title").textContent = element.textContent;
-  tableidclick = row.getAttribute("data-id");
+  tableidclick =element.textContent;
 
  
 
@@ -653,8 +652,8 @@ body {
               </thead>
               <tbody class="tbody" id="tableBody">
                 <tr th:each="module : ${moduleList}" class="count">
-                  <td class="td tdhover" th:text="${module.name}" onclick="table_modal(this)"></td>
-                  <td class="td" th:text="${module.id}"></td>
+                  <td class="td " th:text="${module.name}" ></td>
+                  <td class="td tdhover" th:text="${module.id}" onclick="table_modal(this)"></td>
                 </tr>                
               </tbody>
             </table>
