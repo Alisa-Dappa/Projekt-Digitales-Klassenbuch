@@ -305,7 +305,7 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
     var description = document.getElementById('event-description').value;
     var id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     var module_id = document.getElementById('dropdown').value;
-
+    var eventcount = calendar.getEvents().length +1;
 
     // Create event object
     var eventObj = {
@@ -323,17 +323,20 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
     
     
   $.ajax({
-    url: "/api/thema",
+    url: "/module/" + id + "/thema",
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify({
+      
       title: title,
       startD: start,
       endD: end,
       color: color,
       description: description,
-      jsid: id,
+      jsID: id,
       module_id: module_id
+      
+     
     }),
     success: function(data) {
       // Ereignis erfolgreich erstellt
