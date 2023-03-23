@@ -58,20 +58,23 @@ public class ThemaApiController {
         Thema thema = themaRepository.findById(thema_id)
                 .orElseThrow(() -> new EntityNotFoundException("Thema wurde nicht gefunden."));
 
+        thema.setStartD(thema.getStartD());
+        thema.setEndD(thema.getEndD());
+        thema.setColor(thema.getColor());
         thema.setDescription(themaDetails.getDescription());
+        thema.setJsID(thema.getJsID());
+        thema.setModule(thema.getModule());
 
         return themaRepository.save(thema);
     }
-    @PutMapping("/api/thema/{jsID}")
-    public ResponseEntity<Thema> updateThema(@PathVariable(value = "jsID") String jsID,
-                                             @Validated @RequestBody Thema themaDetails) {
 
-        Thema thema = themaRepository.findByJsID(jsID)
+    @DeleteMapping("/api/thema/{id}")
+    public ResponseEntity<?> deleteThema(@PathVariable(value = "id") Long thema_id) {
+        Thema thema = themaRepository.findById(thema_id)
                 .orElseThrow(() -> new EntityNotFoundException("Thema wurde nicht gefunden."));
 
-        thema.setDescription(themaDetails.getDescription());
+        themaRepository.delete(thema);
 
-        Thema updatedThema = themaRepository.save(thema);
-        return ResponseEntity.ok(updatedThema);
+        return ResponseEntity.ok().build();
     }
 }

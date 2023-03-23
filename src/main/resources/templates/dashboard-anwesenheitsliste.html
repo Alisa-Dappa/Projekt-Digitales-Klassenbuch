@@ -9,34 +9,34 @@
     <link rel="stylesheet" href="anwesenheitsliste.css">
     <script src='../dist/index.global.js'></script>
     <title>Document</title>
-<!--
-- Bei den Links in der Sidebar muss ich noch überall die Verbindung besser machen. z.B /dashboard-home usw.
-- 
+    <!--
+    - Bei den Links in der Sidebar muss ich noch überall die Verbindung besser machen. z.B /dashboard-home usw.
+    -
 
--->
-
-</head>
-<body>
+    -->
 
 </head>
+
+
+
 <body>
-    <script>
-        
+<script>
+
         window.onload = function() {
             const currentTime = new Date();
   const currentHour = currentTime.getHours();
   const currentMinute = currentTime.getMinutes();
-  
+
           var addEventBtn = document.getElementById('anwesenheit');
           addEventBtn.addEventListener('click', function() {
           if (currentHour < 8 || (currentHour === 15 && currentMinute > 15)) {
             alert("Es ist zu spät um die Anwwesenheit zu bestätigen");
             } else {
-                
+
             document.getElementById('event-form').style.display = 'block';
             }
           });
-        
+
         var closeBtn = document.getElementsByClassName('close')[0];
   closeBtn.addEventListener('click', function() {
     document.getElementById('event-form').style.display = 'none';
@@ -85,7 +85,7 @@ clearButton.addEventListener("click", function () {
 
 };
       </script>
-      <style>
+<style>
 
 /* Modal styles */
 .modal {
@@ -127,8 +127,8 @@ clearButton.addEventListener("click", function () {
     border-radius: 25px;
 }
       </style>
-  <div class="main-page"> 
-    
+<div class="main-page">
+
     <nav>
         <div class="userinfo-navbar">
             <img class="profilepicture-navbar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png">
@@ -138,110 +138,109 @@ clearButton.addEventListener("click", function () {
             <svg class="navbar-icon icon icon-tabler icon-tabler-home "xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg>
             <a style="text-decoration: none;" href="/dashboard-home">Home</a>
         </div>
-        <div class="nav-items">
-            <svg class="navbar-icon icon icon-tabler icon-tabler-color-swatch" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M19 3h-4a2 2 0 0 0 -2 2v12a4 4 0 0 0 8 0v-12a2 2 0 0 0 -2 -2"></path><path d="M13 7.35l-2 -2a2 2 0 0 0 -2.828 0l-2.828 2.828a2 2 0 0 0 0 2.828l9 9"></path><path d="M7.3 13h-2.3a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h12"></path><path d="M17 17l0 .01"></path></svg>
-            <a style="text-decoration: none;">Themenwahl</a>
-        </div>
+
         <div class="nav-items activesite">
-        <svg class="navbar-icon icon icon-tabler icon-tabler-question-mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path><path d="M12 19l0 .01"></path></svg>
+            <svg class="navbar-icon icon icon-tabler icon-tabler-question-mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path><path d="M12 19l0 .01"></path></svg>
             <a style="text-decoration: none;" class="activesite" href="/dashboard-anwesenheitsliste">Anwesenheitsliste</a>
         </div>
         <div class="nav-items">
             <svg class="navbar-icon icon icon-tabler icon-tabler-question-mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path><path d="M12 19l0 .01"></path></svg>
-            <a style="text-decoration: none;" >Klassentools</a>
-        </div>  
-        </nav>
+            <a style="text-decoration: none;" href="/dashboard-klassentools">Klassentools</a>
+        </div>
+    </nav>
     <div class="main">
-        
+
         <button id="anwesenheit" type="submit">Anwesenheit bestätigen</button>
 
         <h2>Anwesenheitsliste</h2>
-      <div>
-        <div class="table-margin">
-            <div  class="table-position">            
-                
-            <table class="table">
-              <thead class="thead">
-              <tr class="tr">
-                <th class="th">Name</th>
-                <th class="th">Checklist</th>
-              </tr>
-              </thead>
-              <tbody class="tbody">
-              <tr>
-                <td class="td">James</td>
-                <td class="td"><input type="checkbox"></td>
-              </tr>
-              </tbody>
-            </table>     
-            <table class="table">
-                <thead class="thead">
-                <tr class="tr">
-                  <th class="th">Name</th>
-                  <th class="th">Checklist</th>
-                </tr>
-                </thead>
-                <tbody class="tbody">
-                <tr>
-                  <td class="td">Name</td>
-                  <td class="td"><input type="checkbox"></td>
-                </tr>
-                </tbody>
-              </table>   
-              <table class="table">
-                <thead class="thead">
-                <tr class="tr">
-                  <th class="th">Name</th>
-                  <th class="th">Checklist</th>
-                </tr>
-                </thead>
-                <tbody class="tbody">
-                <tr>
-                  <td class="td">Name</td>
-                  <td class="td"><input type="checkbox"></td>
-                </tr>
-                </tbody>
-              </table>     
-              <table class="table">
-                <thead class="thead">
-                <tr class="tr">
-                  <th class="th">Name</th>
-                  <th class="th">Checklist</th>
-                </tr>
-                </thead>
-                <tbody class="tbody">
-                <tr>
-                  <td class="td">Name</td>
-                  <td class="td"><input type="checkbox"></td>
-                </tr>
-                </tbody>
-              </table>     
-              </div> 
+        <div>
+            <div class="table-margin">
+                <div  class="table-position">
+
+                    <table class="table">
+                        <thead class="thead">
+                        <tr class="tr">
+                            <th class="th">Name</th>
+                            <th class="th">Checklist</th>
+                        </tr>
+                        </thead>
+                        <tbody class="tbody">
+                        <tr>
+                            <td class="td">James</td>
+                            <td class="td"><input type="checkbox"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="table">
+                        <thead class="thead">
+                        <tr class="tr">
+                            <th class="th">Name</th>
+                            <th class="th">Checklist</th>
+                        </tr>
+                        </thead>
+                        <tbody class="tbody">
+                        <tr>
+                            <td class="td">Name</td>
+                            <td class="td"><input type="checkbox"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="table">
+                        <thead class="thead">
+                        <tr class="tr">
+                            <th class="th">Name</th>
+                            <th class="th">Checklist</th>
+                        </tr>
+                        </thead>
+                        <tbody class="tbody">
+                        <tr>
+                            <td class="td">Name</td>
+                            <td class="td"><input type="checkbox"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="table">
+                        <thead class="thead">
+                        <tr class="tr">
+                            <th class="th">Name</th>
+                            <th class="th">Checklist</th>
+                        </tr>
+                        </thead>
+                        <tbody class="tbody">
+                        <tr>
+                            <td class="td">Name</td>
+                            <td class="td"><input type="checkbox"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
         </div>
-      </div>
     </div>
-    </div>
+</div>
+</div>
 
 
-      <div id="event-form" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <h2 class="modal-title">Unterschrift</h2>
-          <div class="content-modal">
-          <form class="modal-content-flex">
-            <canvas id="signature-field" height="500px" width="800px" style="border: 2px solid black;"></canvas>
-           <p>Das Unterschrift Element, braucht eine bestimmte Display-Größe, damit es angezeigt werden kann.</p>
+<div id="event-form" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Unterschrift</h2>
+        <div class="content-modal">
+            <form class="modal-content-flex">
+                <canvas id="signature-field" height="500px" width="800px" style="border: 2px solid black;"></canvas>
+                <p>Das Unterschrift Element, braucht eine bestimmte Display-Größe, damit es angezeigt werden kann.</p>
+                <div>
+                    <button class="modal-btn btn-style" type="submit">Einreichen</button>
+                    <button id="clear-button" type="button">Unterschrift neu machen</button>
+                </div>
+
+
+            </form>
         </div>
-          <div>
-            <button class="modal-btn btn-style" type="submit">Einreichen</button>
-            <button id="clear-button" type="button">Unterschrift neu machen</button>
-          </div>
-        </div>
-          </form>
-        </div>
-      </div>
+    </div>
+</div>
+
 
 </body>
 </html>
