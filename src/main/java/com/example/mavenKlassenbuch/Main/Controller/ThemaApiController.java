@@ -72,9 +72,8 @@ public class ThemaApiController {
     public ResponseEntity<?> deleteThema(@PathVariable(value = "id") Long thema_id) {
         Thema thema = themaRepository.findById(thema_id)
                 .orElseThrow(() -> new EntityNotFoundException("Thema wurde nicht gefunden."));
-
         themaRepository.delete(thema);
-
         return ResponseEntity.ok().build();
     }
 }
+

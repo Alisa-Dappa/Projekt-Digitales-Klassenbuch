@@ -22,7 +22,8 @@ import java.util.List;
         @Autowired
         private final ThemaRepository themaRepository;
 
-        public MyController(ModuleRepository moduleRepository, ThemaRepository themaRepository) {  //Konstruktor hat die Interfaces als Parameter
+        //Konstruktor hat die Interfaces als Parameter
+        public MyController(ModuleRepository moduleRepository, ThemaRepository themaRepository) {
             this.moduleRepository = moduleRepository;
             this.themaRepository = themaRepository;
         }
@@ -39,6 +40,7 @@ import java.util.List;
             model.addAttribute("Klassenbuch", name);
             return "dashboard-anwesenheitsliste";
         }
+
         @GetMapping("/dashboard-klassentools")
         public String klassentools(@RequestParam(name = "Klassenbuch", required = false) String name, Model model) {
             model.addAttribute("Klassenbuch", name);
@@ -118,13 +120,11 @@ import java.util.List;
             return themaRepository.save(thema);
         }
 
-        @DeleteMapping("/api/thema/{id}")
+        @DeleteMapping("/thema/{id}")
         public ResponseEntity<?> deleteThema(@PathVariable(value = "id") Long thema_id) {
             Thema thema = themaRepository.findById(thema_id)
                     .orElseThrow(() -> new EntityNotFoundException("Thema wurde nicht gefunden."));
-
             themaRepository.delete(thema);
-
             return ResponseEntity.ok().build();
         }
     }
