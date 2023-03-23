@@ -2,6 +2,8 @@ package com.example.mavenKlassenbuch.Main.Controller;
 
 import com.example.mavenKlassenbuch.Main.Model.Module;
 import com.example.mavenKlassenbuch.Main.Model.ModuleRepository;
+import com.example.mavenKlassenbuch.Main.Model.Thema;
+import com.example.mavenKlassenbuch.Main.Model.ThemaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -17,6 +19,8 @@ public class ModuleApiController {
 
     @Autowired
     private ModuleRepository moduleRepository;
+    @Autowired
+    private ThemaRepository themaRepository;
 
     @GetMapping("/module")
     public List<Module> getAllModules() {
@@ -36,7 +40,7 @@ public class ModuleApiController {
                 .orElseThrow(() -> new EntityNotFoundException("Modul wurde nicht gefunden."));
     }
 
-    @PostMapping("/module")
+    @PostMapping("/module/{id}")
     public Module createModule(@Validated @RequestBody Module module) {
         return moduleRepository.save(module);
     }
@@ -52,12 +56,12 @@ public class ModuleApiController {
     }
 
     @DeleteMapping("/module/{id}")
-    public ResponseEntity<?> deleteModul(@PathVariable(value = "id") Long module_id) {
-        Module module = moduleRepository.findById(module_id)
+    public ResponseEntity<?> deleteModule(@PathVariable(value = "id") Long moduleId) {
+        Module module = moduleRepository.findById(moduleId)
                 .orElseThrow(() -> new EntityNotFoundException("Modul wurde nicht gefunden."));
-
+        List<Thema> thema = themaRepository.findByModuleId(moduleId);
+        themaRepository.deleteAll(thema);
         moduleRepository.delete(module);
-
         return ResponseEntity.ok().build();
     }
 }

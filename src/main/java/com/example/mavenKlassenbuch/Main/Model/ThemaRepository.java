@@ -11,6 +11,7 @@ import java.util.Optional;
 
         List<Thema> findByModule_Id(Long module_id);
         Optional<Thema> findById(Long id);
+        List<Thema> findByModuleId(Long moduleId);
 
 }
 
