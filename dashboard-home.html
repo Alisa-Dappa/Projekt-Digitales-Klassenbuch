@@ -306,7 +306,7 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
     var id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     var module_id = document.getElementById('dropdown').value;
 
-    console.log(eventcount)
+
     // Create event object
     var eventObj = {
       id: id,
@@ -390,7 +390,9 @@ function open_modal_add_modul(){
 function add_modulbtn(){
   var id = document.querySelectorAll('.count').length +1;
   console.log(id)
+  
   var name = document.getElementById('add_modul_field').value;
+  console.log(name)
   $.ajax({
     url: '/api/module/' + id,
     type: "POST",
