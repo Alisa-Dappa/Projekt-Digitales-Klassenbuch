@@ -367,6 +367,8 @@ function table_modal(element){
   document.getElementById("table-modal-title").textContent = element.textContent;
   tableidclick = row.getAttribute("data-id");
 
+ 
+
   
 }
 function close_tablemodal(){
@@ -388,7 +390,7 @@ function add_modulbtn(){
   console.log(id)
   var name = document.getElementById('add_modul_field').value;
   $.ajax({
-    url: "/api/module",
+    url: '/api/module/' + id,
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify({
@@ -411,6 +413,7 @@ function add_modulbtn(){
 }
 function del_modul(){
   var id = tableidclick
+  console.log(id)
   $.ajax({
     url: "/api/module/" + id,
     type: "DELETE",
@@ -646,10 +649,10 @@ body {
                 </tr>
               </thead>
               <tbody class="tbody" id="tableBody">
-                <tr th:each="module : ${moduleList}" class="count" th:attr="data-id=${module.id}">
+                <tr th:each="module : ${moduleList}" class="count">
                   <td class="td tdhover" th:text="${module.name}" onclick="table_modal(this)"></td>
                   <td class="td" th:text="${module.id}"></td>
-                </tr>
+                </tr>                
               </tbody>
             </table>
           </div>
