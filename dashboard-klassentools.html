@@ -22,8 +22,6 @@ const result = document.getElementById('result');
   const randomNum = Math.floor(Math.random() * (parseInt(max) - parseInt(min) + 1)) + parseInt(min);
   
   result.innerHTML = `Die zufällige Zahl lautet: ${randomNum}`;
-
-  
   }
   function copy1(){
       // Get the text field
@@ -135,32 +133,32 @@ alert("Copied the text: " + copyText.value);
             <div class="copy-links">
                 <h1>Nützliche Links</h1>
                 <div>
-                <input class="input-field-lenght" id="link1" type="text" value="https://sqltrainer.mischok.academy"
-       class="field left" readonly="readonly">
+                <input class="input-field-lenght field left" id="link1" type="text" value="https://sqltrainer.mischok.academy"
+        readonly="readonly">
        <button onclick="copy1()">Copy</button>
        <button onclick="window.open('https://sqltrainer.mischok.academy', '_blank')">Open</button>
        </div>
        <div>
-        <input class="input-field-lenght" type="text"id="link2" value="https://prelive-sqltrainer.mischok.academy/java-2/practice"
-            class="field left" readonly="readonly">
+        <input class="input-field-lenght field left" type="text"id="link2" value="https://prelive-sqltrainer.mischok.academy/java-2/practice"
+             readonly="readonly">
             <button onclick="copy2()">Copy</button>
             <button onclick="window.open('https://prelive-sqltrainer.mischok.academy/java-2/practice', '_blank')">Open</button>
             </div>
             <div>
-                <input class="input-field-lenght" type="text"id="link3" value="https://www.w3schools.com/"
-            class="field left" readonly="readonly">
+                <input class="input-field-lenght field left" type="text"id="link3" value="https://www.w3schools.com/"
+             readonly="readonly">
             <button onclick="copy3()">Copy</button>
             <button onclick="window.open('https://www.w3schools.com/', '_blank')">Open</button>
             </div>
             <div>
-                <input class="input-field-lenght" type="text"id="link4" value="https://stackoverflow.com"
-            class="field left" readonly="readonly">
+                <input class="input-field-lenght field left" type="text"id="link4" value="https://stackoverflow.com"
+             readonly="readonly">
             <button onclick="copy4()">Copy</button>
             <button onclick="window.open('https://stackoverflow.com', '_blank')">Open</button>
             </div>
             <div>
-                <input class="input-field-lenght" type="text"id="link5" value="https://www.office.com/"
-            class="field left" readonly="readonly">
+                <input class="input-field-lenght field left" type="text"id="link5" value="https://www.office.com/"
+             readonly="readonly">
             <button onclick="copy5()">Copy</button>
             <button onclick="window.open('https://www.office.com/', '_blank')">Open</button>
             </div>
@@ -169,6 +167,6 @@ alert("Copied the text: " + copyText.value);
 
             </div>
 
-
+    </div>
 </body>
 </html>
