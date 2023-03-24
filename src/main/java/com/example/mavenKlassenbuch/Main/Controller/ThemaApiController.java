@@ -5,6 +5,7 @@ import com.example.mavenKlassenbuch.Main.Model.ModuleRepository;
 import com.example.mavenKlassenbuch.Main.Model.Thema;
 import com.example.mavenKlassenbuch.Main.Model.ThemaRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -57,16 +58,17 @@ public class ThemaApiController {
 
         Thema thema = themaRepository.findById(thema_id)
                 .orElseThrow(() -> new EntityNotFoundException("Thema wurde nicht gefunden."));
-
-        thema.setStartD(thema.getStartD());
-        thema.setEndD(thema.getEndD());
-        thema.setColor(thema.getColor());
+        thema.setTitle(themaDetails.getTitle());
+        thema.setStartD(themaDetails.getStartD());
+        thema.setEndD(themaDetails.getEndD());
+        thema.setColor(themaDetails.getColor());
         thema.setDescription(themaDetails.getDescription());
-        thema.setJsID(thema.getJsID());
+        thema.setJsID(themaDetails.getJsID());
         thema.setModule(thema.getModule());
 
         return themaRepository.save(thema);
     }
+
 
     @DeleteMapping("/api/thema/{id}")
     public ResponseEntity<?> deleteThema(@PathVariable(value = "id") Long thema_id) {

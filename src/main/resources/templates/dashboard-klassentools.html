@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="sidebar.css">
-  <link rel="stylesheet" href="klassentools.css">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="klassentools.css">
+    <title>Document</title>
 </head>
 <body>
-<script>
+    <script>
 
 
   function generate_random_number(){
@@ -20,7 +20,7 @@ const result = document.getElementById('result');
   const min = document.getElementById('min').value;
   const max = document.getElementById('max').value;
   const randomNum = Math.floor(Math.random() * (parseInt(max) - parseInt(min) + 1)) + parseInt(min);
-
+  
   result.innerHTML = `Die zufällige Zahl lautet: ${randomNum}`;
   }
   function copy1(){
@@ -93,99 +93,99 @@ navigator.clipboard.writeText(copyText.value);
 // Alert the copied text
 alert("Copied the text: " + copyText.value);
 }
-
+  
 
 
 
     </script>
-<div class="main-page">
+    <div class="main-page"> 
+    
+        <nav>
+            <div class="userinfo-navbar">
+                <img class="profilepicture-navbar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png">
+                <p>Name of the user</p>
+            </div>
+            <div class="nav-items">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
+                    <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
+                    <path d="M3 6l0 13"></path>
+                    <path d="M12 6l0 13"></path>
+                    <path d="M21 6l0 13"></path>
+                 </svg>
+                <a style="text-decoration: none;" href="/dashboard-home">Home</a>
+            </div>
 
-  <nav>
-    <div class="userinfo-navbar">
-      <img class="profilepicture-navbar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png">
-      <p>Name of the user</p>
+            <div class="nav-items ">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
+                    <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
+                    <path d="M3 6l0 13"></path>
+                    <path d="M12 6l0 13"></path>
+                    <path d="M21 6l0 13"></path>
+                 </svg>
+                <a style="text-decoration: none;"  href="/dashboard-anwesenheitsliste">Anwesenheitsliste</a>
+            </div>
+            <div class="nav-items activesite">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-ballpen" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M14 6l7 7l-4 4"></path>
+                    <path d="M5.828 18.172a2.828 2.828 0 0 0 4 0l10.586 -10.586a2 2 0 0 0 0 -2.829l-1.171 -1.171a2 2 0 0 0 -2.829 0l-10.586 10.586a2.828 2.828 0 0 0 0 4z"></path>
+                    <path d="M4 20l1.768 -1.768"></path>
+                 </svg>
+                <a style="text-decoration: none;" class="activesite" href="/dashboard-klassentools">Klassentools</a>
+            </div>  
+            </nav>
+        <div class="main">
+
+
+            <div class="container">
+                <h1>Zufallsgenerator</h1>
+                <p class="p">Geben Sie die niedrigste und höchste Zahl ein:</p>
+                <input type="number" id="min" placeholder="Niedrigste Zahl">
+                <input type="number" id="max" placeholder="Höchste Zahl">
+                <button id="generateBtn" onclick="generate_random_number()">Generieren</button>
+                <p class="p" id="result">Die zufällige Zahl lautet: </p>
+              </div>
+            <div class="copy-links">
+                <h1>Nützliche Links</h1>
+                <div>
+                <input class="input-field-lenght field left" id="link1" type="text" value="https://sqltrainer.mischok.academy"
+        readonly="readonly">
+       <button onclick="copy1()">Copy</button>
+       <button onclick="window.open('https://sqltrainer.mischok.academy', '_blank')">Open</button>
+       </div>
+       <div>
+        <input class="input-field-lenght field left" type="text"id="link2" value="https://prelive-sqltrainer.mischok.academy/java-2/practice"
+             readonly="readonly">
+            <button onclick="copy2()">Copy</button>
+            <button onclick="window.open('https://prelive-sqltrainer.mischok.academy/java-2/practice', '_blank')">Open</button>
+            </div>
+            <div>
+                <input class="input-field-lenght field left" type="text"id="link3" value="https://www.w3schools.com/"
+             readonly="readonly">
+            <button onclick="copy3()">Copy</button>
+            <button onclick="window.open('https://www.w3schools.com/', '_blank')">Open</button>
+            </div>
+            <div>
+                <input class="input-field-lenght field left" type="text"id="link4" value="https://stackoverflow.com"
+             readonly="readonly">
+            <button onclick="copy4()">Copy</button>
+            <button onclick="window.open('https://stackoverflow.com', '_blank')">Open</button>
+            </div>
+            <div>
+                <input class="input-field-lenght field left" type="text"id="link5" value="https://www.office.com/"
+             readonly="readonly">
+            <button onclick="copy5()">Copy</button>
+            <button onclick="window.open('https://www.office.com/', '_blank')">Open</button>
+            </div>
+            </div>
+
+
+            </div>
+
     </div>
-    <div class="nav-items">
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
-        <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
-        <path d="M3 6l0 13"></path>
-        <path d="M12 6l0 13"></path>
-        <path d="M21 6l0 13"></path>
-      </svg>
-      <a style="text-decoration: none;" href="/dashboard-home">Home</a>
-    </div>
-
-    <div class="nav-items ">
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
-        <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
-        <path d="M3 6l0 13"></path>
-        <path d="M12 6l0 13"></path>
-        <path d="M21 6l0 13"></path>
-      </svg>
-      <a style="text-decoration: none;"  href="/dashboard-anwesenheitsliste">Anwesenheitsliste</a>
-    </div>
-    <div class="nav-items activesite">
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-ballpen" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path d="M14 6l7 7l-4 4"></path>
-        <path d="M5.828 18.172a2.828 2.828 0 0 0 4 0l10.586 -10.586a2 2 0 0 0 0 -2.829l-1.171 -1.171a2 2 0 0 0 -2.829 0l-10.586 10.586a2.828 2.828 0 0 0 0 4z"></path>
-        <path d="M4 20l1.768 -1.768"></path>
-      </svg>
-      <a style="text-decoration: none;" class="activesite" href="/dashboard-klassentools">Klassentools</a>
-    </div>
-  </nav>
-  <div class="main">
-
-
-    <div class="container">
-      <h1>Zufallsgenerator</h1>
-      <p class="p">Geben Sie die niedrigste und höchste Zahl ein:</p>
-      <input type="number" id="min" placeholder="Niedrigste Zahl">
-      <input type="number" id="max" placeholder="Höchste Zahl">
-      <button id="generateBtn" onclick="generate_random_number()">Generieren</button>
-      <p class="p" id="result">Die zufällige Zahl lautet: </p>
-    </div>
-    <div class="copy-links">
-      <h1>Nützliche Links</h1>
-      <div>
-        <input class="input-field-lenght field left" id="link1" type="text" value="https://sqltrainer.mischok.academy"
-               readonly="readonly">
-        <button onclick="copy1()">Copy</button>
-        <button onclick="window.open('https://sqltrainer.mischok.academy', '_blank')">Open</button>
-      </div>
-      <div>
-        <input class="input-field-lenght field left" type="text" id="link2" value="https://prelive-sqltrainer.mischok.academy/java-2/practice"
-               readonly="readonly">
-        <button onclick="copy2()">Copy</button>
-        <button onclick="window.open('https://prelive-sqltrainer.mischok.academy/java-2/practice', '_blank')">Open</button>
-      </div>
-      <div>
-        <input class="input-field-lenght field left" type="text" id="link3" value="https://www.w3schools.com/"
-               readonly="readonly">
-        <button onclick="copy3()">Copy</button>
-        <button onclick="window.open('https://www.w3schools.com/', '_blank')">Open</button>
-      </div>
-      <div>
-        <input class="input-field-lenght field left" type="text" id="link4" value="https://stackoverflow.com"
-               readonly="readonly">
-        <button onclick="copy4()">Copy</button>
-        <button onclick="window.open('https://stackoverflow.com', '_blank')">Open</button>
-      </div>
-      <div>
-        <input class="input-field-lenght field left" type="text" id="link5" value="https://www.office.com/"
-               readonly="readonly">
-        <button onclick="copy5()">Copy</button>
-        <button onclick="window.open('https://www.office.com/', '_blank')">Open</button>
-      </div>
-    </div>
-
-
-  </div>
-
-</div>
 </body>
 </html>

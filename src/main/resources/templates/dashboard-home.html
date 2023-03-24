@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     weekNumbers: true,
     eventClick: function(info) {
   eventid = info.event.id;
-  console.log(eventid);
+  console.log(info.event.module_id);
   document.getElementById('event-title2').value = info.event.title;
 
   // Setze das Anfangsdatum im ISO-Format
@@ -62,6 +62,7 @@ if (endDate) {
 }
 
 // Datum in das input Feld einsetzen
+  document.getElementById('dropdown2').value=info.event.extendedProps.module_id;
   document.getElementById('event-start-date2').value = startDate;
   document.getElementById('event-end-date2').value = endDate;
 
@@ -71,30 +72,37 @@ if (endDate) {
   document.getElementById('event-form-clickevent').style.display = 'block';
 },
     eventDrop: function(info){
-      var eventidcurrent = eventid
+      var eventidcurrent = info.event.id
+      console.log(eventidcurrent);
+      var newDate = info.event.start;
+      var newDateend = info.event.end;
+      console.log(info.event.module_id);
+  console.log(newDate);
 
-      $.ajax({
-        url: '/api/thema/' + eventidcurrent,
-    type: 'PUT',
-    contentType: 'application/json',
-    data: JSON.stringify({
-      title: info.event.title,
-      startD: info.event.start,
-      endD: info.event.end,
-      color: info.event.color,
-      description: info.event.description,
-      jsID: info.event.eventidcurrent,
-      module_id: info.event.module_id
-    }),
-    success: function(data) {
-      // Ereignis erfolgreich aktualisiert
-      console.log(data);
-    },
-    error: function(xhr, status, error) {
-      // Fehler beim Aktualisieren des Ereignisses
-      console.log(error);
-    }
-  });
+  $.ajax({
+  url: '/api/thema/' + eventidcurrent,
+  type: 'PUT',
+  contentType: 'application/json',
+  data: JSON.stringify({
+    title: info.event.title,
+    startD: newDate,
+    endD: newDateend,
+    color: info.event.backgroundColor,
+    description: info.event.extendedProps.description,
+    jsID: info.event.id,
+    module_id: info.event.module_id
+  }),
+  success: function(data) {
+    // Ereignis erfolgreich aktualisiert
+    console.log(data);
+    console.log("Das Ereignis wurde erfolgreich aktualisiert. Neues Startdatum: " + newDate);
+  },
+  error: function(xhr, status, error) {
+    // Fehler beim Aktualisieren des Ereignisses
+    console.log(error);
+  }
+});
+
 
     },
     eventResize:function(info){
@@ -107,10 +115,10 @@ if (endDate) {
       title: info.event.title,
       startD: info.event.start,
       endD: info.event.end,
-      color: info.event.color,
-      description: info.event.description,
-      jsID: info.event.eventidcurrent,
-      module_id: info.event.module_id
+      color: info.event.backgroundColor,
+    description: info.event.extendedProps.description,
+    jsID: info.event.id,
+    module_id: info.event.extendedProps.module_id
     }),
     success: function(data) {
       // Ereignis erfolgreich aktualisiert
@@ -141,6 +149,7 @@ if (endDate) {
       // Ereignisse im Kalender anzeigen
       var events = [];
       $.each(response, function(index, event) {
+        if(event.module!= null){
   calendar.addEvent({
     title: event.title,
     start: event.startD,
@@ -148,10 +157,10 @@ if (endDate) {
     color: event.color,
     description: event.description,
     id: event.id,
-    module_id: event.module_id
+    module_id: event.module.id
   });
-
-
+  console.log(event.module.id)
+        }
 });
 
 
@@ -192,7 +201,7 @@ calendar.render();
   // Hier kannst du die Werte ausgeben, um sicherzustellen, dass sie korrekt erfasst wurden
   console.log(eventData);
   console.log(eventid)
-
+  console.log(module_id)
 
   // Hier kannst du den Event im Kalender aktualisieren
   var eventObj = {
@@ -237,6 +246,7 @@ calendar.render();
   event.setEnd(end);
   event.setProp('backgroundColor', color);
   event.setExtendedProp('description', description);
+  event.setExtendedProp(module_id);
 
   // Hier kannst du das Modal schließen
   document.getElementById('event-form-clickevent').style.display = 'none';
@@ -306,7 +316,7 @@ document.querySelector('.modal-btn-delete').addEventListener('click', function()
     var id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     var module_id = document.getElementById('dropdown').value;
 
-    console.log(eventcount)
+
     // Create event object
     var eventObj = {
       id: id,
@@ -368,8 +378,26 @@ function table_modal(element){
   document.getElementById('modal-table').style.display = 'block';
   document.getElementById("table-modal-title").textContent = element.textContent;
   tableidclick =element.textContent;
+  $.ajax({
+  url: '/api/module/'+ tableidclick +'/thema',
+    type: 'GET',
+    success: function(data){
+  var tbody = $('#ajaxTable tbody');
+  tbody.empty();
+  data.forEach(function(object){
+    var row = '<tr>' +
+              '<td>' + object.title + '</td>' +
+              '<td>' + object.color + '</td>' +
+              '<td>' + object.startD + '</td>' +
+              '<td>' + object.endD + '</td>' +
+              '<td>' + object.description + '</td>' +
+              '<td>' + object.id + '</td>';
+    tbody.append(row);
+  });
+}
 
 
+  })
 
 
 }
@@ -390,7 +418,9 @@ function open_modal_add_modul(){
 function add_modulbtn(){
   var id = document.querySelectorAll('.count').length +1;
   console.log(id)
+
   var name = document.getElementById('add_modul_field').value;
+  console.log(name)
   $.ajax({
     url: '/api/module/' + id,
     type: "POST",
@@ -598,7 +628,7 @@ body {
       <div class="modal-content">
         <span onclick="close_tablemodal()" class="close2">&times;</span>
         <h2 class="modal-title" id="table-modal-title">Themen zu diesem Modul</h2>
-        <table class="table">
+        <table class="table" id="ajaxTable">
           <thead class="thead">
           <tr class="tr">
             <th class="th">Title</th>
@@ -610,19 +640,11 @@ body {
           </tr>
           </thead>
           <tbody class="tbody">
-          <tr>
-            <td class="td">Thema 1</td>
-            <td class="td">Thema 2</td>
-            <td class="td">Thema 3</td>
-            <td class="td">Thema 4</td>
-            <td class="td">Thema 5</td>
-            <td class="td">Thema 6</td>
-          </tr>
-
-          <button class="modal-btn3 btn-style btn-style-modal-table" onclick="del_modul()" type="submit">Modul löschen</button>
           </tbody>
         </table>
 
+
+        <button class="modal-btn3 btn-style btn-style-modal-table" onclick="del_modul()" type="submit">Modul löschen</button>
         </form>
       </div>
     </div>
@@ -650,13 +672,14 @@ body {
           <th class="th">ID</th>
         </tr>
         </thead>
-        <tbody class="tbody" id="tableBody">
+        <tbody class="tbody" id="tableBody table-body">
         <tr th:each="module : ${moduleList}" class="count">
-          <td class="td " th:text="${module.name}" ></td>
+          <td class="td" th:text="${module.name}"></td>
           <td class="td tdhover" th:text="${module.id}" onclick="table_modal(this)"></td>
         </tr>
         </tbody>
       </table>
+
     </div>
   </div>
 

@@ -48,8 +48,7 @@ import java.util.List;
         }
 
         @GetMapping("/")
-        public List<Module> getAllModules() {
-            return moduleRepository.findAll();
+        public String index() {return "index";
         }
 
         @GetMapping("/module/{id}")

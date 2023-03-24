@@ -22,7 +22,7 @@ nav{
     border-right: 2px solid #207EEF;
     position: fixed;
     margin-right: 100px;
-
+    
 }
 .userinfo-navbar{
     margin-bottom: 30px;
@@ -41,7 +41,7 @@ nav{
     padding-top: 20px;
     width: 90%;
     padding-left: 20px;
-
+    
     color: blue;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -59,12 +59,12 @@ nav{
     color: white;
     border-top-right-radius: 0px;
     border-bottom-left-radius: 0px;
-
+  
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
     border-bottom-right-radius: 25px;
     border-top-right-radius: 25px;
-
-
+    
+    
 }
 .main-page{
     display: flex;
@@ -77,14 +77,14 @@ nav{
 .main{
     margin-left: 202px;
     margin-top: 50px;
-
+    
 }
 .activesite, .activesite a{
     background-size: 100% 100%;
     color: white;
     border-top-right-radius: 0px;
     border-bottom-left-radius: 0px;
-
+  
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
     border-bottom-right-radius: 25px;
     border-top-right-radius: 25px;

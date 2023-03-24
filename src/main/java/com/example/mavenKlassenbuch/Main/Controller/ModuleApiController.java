@@ -36,7 +36,7 @@ public class ModuleApiController {
                 .orElseThrow(() -> new EntityNotFoundException("Modul wurde nicht gefunden."));
     }
 
-    @PostMapping("/module")
+    @PostMapping("/module/{id}")
     public Module createModule(@Validated @RequestBody Module module) {
         return moduleRepository.save(module);
     }

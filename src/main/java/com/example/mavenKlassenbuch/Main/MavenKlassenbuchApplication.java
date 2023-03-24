@@ -13,6 +13,7 @@ public class MavenKlassenbuchApplication {
 	public static void main(String[] args) throws SQLException {
 		SpringApplication.run(MavenKlassenbuchApplication.class, args);
 
+
 		Connection connection = DatabaseConnection.getConnection();
 
 		//Erstellen der Tabellen aufrufen
