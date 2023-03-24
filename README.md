@@ -8,4 +8,4 @@ Anforderungen:
   - Lerninhalte/Themen sind einzelnen Modulen zugeordnet
   - Daten stehen in einer PostgreSQL-Datenbank zur Verfügung, die bei ElephantSQL gehostet wird
   
-  Entwicklerteam: Alisa Dappa, Daniel Heitzer
+  Entwicklerteam: Alisa Dappa, Sebastian Asum
